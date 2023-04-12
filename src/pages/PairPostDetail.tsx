@@ -1,17 +1,27 @@
 // import LanguageIcon from "components/common/LanguageIcon";
 import { HiArrowLeft } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const PairPostDetail = () => {
+  const navigate = useNavigate();
+
+  const handleBackButton = () => {
+    navigate("/");
+  };
+
   return (
     <main className="pt-10 w-screen flex justify-center">
       <div>
-        <button className="ml-80 flex box-border fixed">
+        <button
+          className="ml-80 w-10 h-10 border flex box-border fixed  justify-center items-center"
+          onClick={handleBackButton}
+        >
           <HiArrowLeft className="w-6 h-6" />
         </button>
       </div>
       <div className="max-w-screen-lg mx-auto block  box-border">
         <section>
-          <div className="flex">
+          <div className="w-lg flex">
             <h1 className="pr-2 inline font-bold text-2xl leading-normal">
               제목 페어 구해요. 제목 페어 구해요. 제목 페어 구해요. 제목 페어
               구해요.
