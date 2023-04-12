@@ -1,23 +1,20 @@
-import LanguageIcon from "components/common/LanguageIcon";
 import SearchBar from "components/common/SearchBar";
 import SquareButton from "components/common/SquareButton";
+// import OptionFilter from "components/pairPostList/OptionFilter";
+// import PostList from "components/pairPostList/PostList";
 import { ButtonStyle } from "types/styles.type";
 
 const PairPostList = () => {
-  const buttonStyle1: ButtonStyle = { isWhite: true };
-  const buttonStyle2: ButtonStyle = { isWhite: false };
+  const buttonStyle: ButtonStyle = { isWhite: false };
   return (
     <div className="w-screen">
-      <SquareButton
-        text="테스트"
-        handleClick={() => {
-          console.log("hi");
-        }}
-        style={buttonStyle1}
-      />
-      <SquareButton text="파랑" handleClick={() => {}} style={buttonStyle2} />
-      <SearchBar />
-      <LanguageIcon language={"javascript"} />
+      <div className="text-2xl font-bold w-full">페어 모집 글 목록</div>
+      <div className="flex w-full gap-4">
+        <SearchBar />
+        <SquareButton text="검색" handleClick={() => {}} style={buttonStyle} />
+      </div>
+      {/* <OptionFilter />
+      <PostList /> */}
     </div>
   );
 };
