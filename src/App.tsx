@@ -1,9 +1,10 @@
 import { RecoilRoot } from "recoil";
+import Router from "./Router";
 
 function App() {
   return (
     <RecoilRoot>
-      <div className="text-3xl">실행테스트</div>
+      <Router />
     </RecoilRoot>
   );
 }
