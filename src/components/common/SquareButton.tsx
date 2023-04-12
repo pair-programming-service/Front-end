@@ -15,7 +15,7 @@ const SquareButton = ({
 
   return (
     <button
-      className={`px-7 ${bgColor} border ${borderColor} h-12 rounded-lg ${textColor} font-bold text-base`}
+      className={`px-7 ${bgColor} border ${borderColor} h-12 rounded-lg ${textColor} font-bold text-base whitespace-nowrap`}
       onClick={handleClick}
     >
       {text}
