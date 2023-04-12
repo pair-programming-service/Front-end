@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import JavaScriptSvg from "../assets/images/languages/javascript.svg";
+import TypeScriptSvg from "../assets/images/languages/typescript.svg";
 
 export interface Language {
   name: string;
@@ -7,12 +8,18 @@ export interface Language {
 }
 
 export type LanguageList = {
-  javascript: Language;
+  language: Language[];
 };
 
 export const languageList: LanguageList = {
-  javascript: {
-    name: "javascript",
-    icon: <img src={JavaScriptSvg} />,
-  } as Language,
+  language: [
+    {
+      name: "JS",
+      icon: <img src={JavaScriptSvg} />,
+    } as Language,
+    {
+      name: "TS",
+      icon: <img src={TypeScriptSvg} />,
+    } as Language,
+  ],
 };
