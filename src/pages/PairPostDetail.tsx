@@ -22,7 +22,7 @@ type DetailData = {
 const dummyData: any = {
   title: "deep dive 자바스크립트 스터디(진행중 후반부)",
   content: `성남 서현쪽에서 진행하고있는 자바스크립트 스터디입니다. 성남 서현쪽에서 진행하고있는 자바스크립트 스터디입니다. 성남 서현쪽에서 진행하고있는 자바스크립트 스터디입니다. \n
-  #A paragraph with 
+  ### A paragraph with 
 
   *emphasis* and **strong importance**.
 
@@ -37,7 +37,13 @@ const dummyData: any = {
   | a | b |
   | - | - |
 
-  \`\`\`js 코드 블록 \`\`\` -> 커스텀 필요
+  \`\`\`text 코드 블록\`\`\`
+
+  \`\`\`js 코드 블록
+  // javascript code
+  let value = 0;
+  console.log(value);
+  \`\`\` 
   `,
   ide: "VSCODE",
   runningTime: "1주~1개월",
@@ -63,7 +69,7 @@ const PairPostDetail = () => {
     <main className="pt-10 w-screen flex justify-center">
       <div>
         <button
-          className="w-10 h-10 rounded-lg border flex box-border relative justify-center items-center"
+          className="ml-60 w-10 h-10 rounded-lg border bg-white flex box-border fixed justify-center items-center"
           onClick={handleBackButton}
         >
           <HiArrowLeft className="w-6 h-6" />
@@ -134,7 +140,6 @@ const PairPostDetail = () => {
         </section>
         <section className="py-4">
           <span className="font-bold text-xl">모집 내용</span>
-
           <MarkdownView content={detailData.content} />
         </section>
       </div>
