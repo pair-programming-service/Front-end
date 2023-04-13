@@ -10,8 +10,8 @@ const SquareButton = ({
   style: ButtonStyle;
 }) => {
   const textColor = style.isWhite ? "text-[#6A6A6A]" : "text-white";
-  const bgColor = style.isWhite ? "bg-white" : "bg-[#769FCD]";
-  const borderColor = style.isWhite ? "border-[#6A6A6A]" : "border-[#769FCD]";
+  const bgColor = style.isWhite ? "bg-white" : "bg-cm-400";
+  const borderColor = style.isWhite ? "border-[#6A6A6A]" : "border-cm-400";
 
   return (
     <button
