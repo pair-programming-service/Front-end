@@ -1,4 +1,4 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { HiArrowLeft } from "react-icons/hi2";
 import MarkdownView from "components/MarkdownView";
@@ -58,12 +58,12 @@ const dummyData: any = {
   view_count: 0,
 };
 const PairPostDetail = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [detailData, setDetailData] = useState<DetailData>(dummyData);
 
   const handleBackButton = () => {
     console.log("cliked");
-    // navigate("/");
+    navigate(`/pairpostlist`);
   };
 
   return (
