@@ -1,5 +1,6 @@
 import Layout from "components/layout/Layout";
 import PairPostDetail from "pages/PairPostDetail";
+import PairPostEdit from "pages/PairPostEdit";
 import PairPostList from "pages/PairPostList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -15,7 +16,7 @@ const Router = () => {
     },
     {
       path: "/pairpostedit",
-      element: <div>수정</div>,
+      element: <PairPostEdit />,
     },
     {
       path: "/pairpostdetail",
