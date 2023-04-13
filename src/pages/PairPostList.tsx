@@ -1,20 +1,27 @@
 import SearchBar from "components/common/SearchBar";
 import SquareButton from "components/common/SquareButton";
-// import OptionFilter from "components/pairPostList/OptionFilter";
-// import PostList from "components/pairPostList/PostList";
+import OptionFilter from "components/pairPostList/OptionFilter";
+import PostList from "components/pairPostList/PostList";
 import { ButtonStyle } from "types/styles.type";
 
 const PairPostList = () => {
   const buttonStyle: ButtonStyle = { isWhite: false };
+  const handleSearch = () => {
+    // TODO: 검색 결과 페이지 이동
+  };
   return (
-    <div className="w-screen">
-      <div className="text-2xl font-bold w-full">페어 모집 글 목록</div>
-      <div className="flex w-full gap-4">
+    <div className="w-full px-4 py-10">
+      <div className="text-2xl font-bold w-full mb-4">페어 모집 글 목록</div>
+      <div className="flex w-full gap-4 mb-4">
         <SearchBar />
-        <SquareButton text="검색" handleClick={() => {}} style={buttonStyle} />
+        <SquareButton
+          text="검색"
+          handleClick={handleSearch}
+          style={buttonStyle}
+        />
       </div>
-      {/* <OptionFilter />
-      <PostList /> */}
+      <OptionFilter />
+      <PostList />
     </div>
   );
 };
