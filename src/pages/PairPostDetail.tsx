@@ -1,8 +1,9 @@
-// import LanguageIcon from "components/common/LanguageIcon";
 // import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { HiArrowLeft } from "react-icons/hi2";
 import MarkdownView from "components/MarkdownView";
+import Tag from "components/common/Tag";
+import LanguageIcon from "components/common/LanguageIcon";
 
 type DetailData = {
   title: string;
@@ -12,7 +13,7 @@ type DetailData = {
   proceed: string;
   category: string;
   runningDate: string;
-  languege: string[];
+  languages: string[];
   created_at: string;
   updated_at: string;
   status: false;
@@ -50,7 +51,7 @@ const dummyData: any = {
   proceed: "온라인",
   category: "알고리즘",
   runningDate: "2023-04-10",
-  languege: ["JS", "TS"],
+  languages: ["JS", "TS"],
   created_at: "2023-04-10 15:00",
   updated_at: "2023-04-10 15:00",
   status: true,
@@ -66,24 +67,24 @@ const PairPostDetail = () => {
   };
 
   return (
-    <main className="pt-10 w-screen flex justify-center">
+    <main className="pt-10 flex justify-center">
       <div>
         <button
-          className="ml-60 w-10 h-10 rounded-lg border bg-white flex box-border fixed justify-center items-center"
+          className="w-10 h-10 rounded-lg border bg-white flex box-border fixed justify-center items-center"
           onClick={handleBackButton}
         >
           <HiArrowLeft className="w-6 h-6" />
         </button>
       </div>
-      <div className="max-w-screen-md mx-auto block  box-border">
+      <div className="mx-auto block  box-border">
         <section>
           <div className="w-lg flex">
             <h1 className="pr-2 inline font-bold text-2xl leading-normal">
               {detailData.title}
             </h1>
-            <p className="m-1.5 px-2 py-1 inline-block rounded-xl text-xs bg-[#D6E6F2]">
-              {detailData.status ? "모집중" : "모집완료"}
-            </p>
+            <div className="m-1.5 px-2 py-1 inline-block">
+              <Tag text={detailData.status ? "모집중" : "모집완료"} />
+            </div>
           </div>
           <div className="py-2 flex justify-between">
             <div>
@@ -113,8 +114,8 @@ const PairPostDetail = () => {
                 언어 및 프레임워크
               </span>
               <span>
-                {detailData.languege[0]}
-                {/* <LanguageIcon language={"javascript"} /> */}
+                {detailData.languages[0]}
+                {/* <LanguageIcon zIndex={"0"} language={detailData.languages[0]} /> */}
               </span>
             </div>
             <div className="flex">
