@@ -10,7 +10,7 @@ const LanguageIcon = ({
   const src = language.icon;
   return (
     <div
-      className={`${zIndex} w-14 h-14 rounded-full border overflow-hidden mx-[-4px]`}
+      className={`relative ${zIndex} w-14 h-14 rounded-full border overflow-hidden -mx-[6px]`}
     >
       {src}
     </div>
