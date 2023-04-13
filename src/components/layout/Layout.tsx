@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
+import Header from "components/Header";
 
 const Layout = () => {
   return (
-    <div className="max-w-[1180px] mx-auto">
-      <div>헤더</div>
-      <Outlet />
+    <div>
+      <Header />
+      <div className="max-w-[1180px] mx-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };
