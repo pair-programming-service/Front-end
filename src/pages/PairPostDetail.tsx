@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { HiArrowLeft } from "react-icons/hi2";
 import MarkdownView from "components/MarkdownView";
 import Tag from "components/common/Tag";
 import LanguageIcon from "components/common/LanguageIcon";
 import { Language } from "types/language.type";
+import axios from "axios";
+import SquareButton from "components/common/SquareButton";
 
 type DetailData = {
   title: string;
@@ -58,16 +60,29 @@ const dummyData: any = {
   status: true,
   view_count: 0,
 };
+
 const PairPostDetail = () => {
   const navigate = useNavigate();
   const [detailData, setDetailData] = useState<DetailData>(dummyData);
+  const id = 2;
+
+  // fetch("http://3.34.199.130:8080/api/board/detail/2")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setDetailData(data.data);
+  //     console.log(detailData);
+  //   });
 
   const handleBackButton = () => {
     // navigate(`/pairpostlist`);
     navigate(-1);
   };
 
-  return (
+  const handleEditButton = () => {
+    navigate(`/paripostedit/${id}`);
+  };
+
+  return detailData ? (
     <main className="pt-20 flex justify-center">
       <div>
         <button
@@ -79,12 +94,21 @@ const PairPostDetail = () => {
       </div>
       <div className="mx-auto block  box-border">
         <section>
-          <div className="w-lg flex">
-            <h1 className="pr-2 inline font-bold text-2xl leading-normal">
-              {detailData.title}
-            </h1>
-            <div className="m-1.5 px-2 py-1 inline-block">
-              <Tag text={detailData.status ? "모집중" : "모집완료"} />
+          <div className="flex justify-between">
+            <div className="w-lg flex">
+              <h1 className="pr-2 inline font-bold text-2xl leading-normal">
+                {detailData.title}
+              </h1>
+              <div className="m-1.5 px-2 py-1 inline-block">
+                <Tag text={detailData.status ? "모집중" : "모집완료"} />
+              </div>
+            </div>
+            <div>
+              <SquareButton
+                text="수정하기"
+                handleClick={handleEditButton}
+                style={{ isWhite: false }}
+              />
             </div>
           </div>
           <div className="py-2 flex justify-between">
@@ -151,6 +175,8 @@ const PairPostDetail = () => {
         </section>
       </div>
     </main>
+  ) : (
+    <></>
   );
 };
 
