@@ -28,7 +28,7 @@ const OptionFilter = () => {
       <div className="flex mb-4">
         {optionList.map((option) => (
           <DropdownOption
-            key={option.optionNum}
+            key={option.id}
             option={option}
             openedOptionNum={openedOptionNum}
             setOpenedOptionNum={setOpenedOptionNum}
