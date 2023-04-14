@@ -11,6 +11,12 @@ export const getPairPostList = (
   });
 };
 
+export const getPairPost = (id: number) => {
+  return request({
+    url: `/board/detail/${id}`,
+  });
+};
+
 export const postPairPost = (data: PairPost) => {
   return request({
     method: "POST",
