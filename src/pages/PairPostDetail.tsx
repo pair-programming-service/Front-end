@@ -47,7 +47,7 @@ const PairPostDetail = () => {
   };
 
   const handleEditButton = () => {
-    navigate(`/paripostedit/${id}`);
+    navigate(`/pairpostedit/${id}`);
   };
 
   return detailData ? (
@@ -60,7 +60,7 @@ const PairPostDetail = () => {
           <HiArrowLeft className="w-6 h-6" />
         </button>
       </div>
-      <div className="mx-auto block  box-border">
+      <div className="w-[1000px] mx-auto block  box-border">
         <section>
           <div className="flex justify-between">
             <div className="w-lg flex">
