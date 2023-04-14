@@ -1,21 +1,19 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { frameworkSelect, languageSelect } from "state/atoms/editOptionAtom";
 import { languageList } from "types/language.type";
-import LanguageButton from "./LanguageButton";
+import ImageButton from "./ImageButton";
 
 const LanguageSelect = () => {
-  const [lanSelectedArr, setLanSelectedArr] = useState(
-    new Array(languageList.language.length).fill(false)
-  );
-  const [frameSelectedArr, setFrameSelectedArr] = useState(
-    new Array(languageList.language.length).fill(false)
-  );
+  const [lanSelectedArr, setLanSelectedArr] = useRecoilState(languageSelect);
+  const [frameSelectedArr, setFrameSelectedArr] =
+    useRecoilState(frameworkSelect);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         {languageList.language.map((language) => (
-          <LanguageButton
+          <ImageButton
             key={language.id}
-            language={language}
+            option={language}
             isSelected={lanSelectedArr[language.id]}
             setSelectedArr={setLanSelectedArr}
             selectedArr={lanSelectedArr}
@@ -23,11 +21,11 @@ const LanguageSelect = () => {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        {languageList.framework.map((language) => (
-          <LanguageButton
-            key={language.id}
-            language={language}
-            isSelected={frameSelectedArr[language.id]}
+        {languageList.framework.map((framework) => (
+          <ImageButton
+            key={framework.id}
+            option={framework}
+            isSelected={frameSelectedArr[framework.id]}
             setSelectedArr={setFrameSelectedArr}
             selectedArr={frameSelectedArr}
           />
