@@ -4,6 +4,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 import MarkdownView from "components/MarkdownView";
 import Tag from "components/common/Tag";
 import LanguageIcon from "components/common/LanguageIcon";
+import { Language } from "types/language.type";
 
 type DetailData = {
   title: string;
@@ -13,7 +14,7 @@ type DetailData = {
   proceed: string;
   category: string;
   runningDate: string;
-  languages: string[];
+  languages: Language[];
   created_at: string;
   updated_at: string;
   status: false;
@@ -62,12 +63,12 @@ const PairPostDetail = () => {
   const [detailData, setDetailData] = useState<DetailData>(dummyData);
 
   const handleBackButton = () => {
-    console.log("cliked");
-    navigate(`/pairpostlist`);
+    // navigate(`/pairpostlist`);
+    navigate(-1);
   };
 
   return (
-    <main className="pt-10 flex justify-center">
+    <main className="pt-20 flex justify-center">
       <div>
         <button
           className="w-10 h-10 rounded-lg border bg-white flex box-border fixed justify-center items-center"
@@ -113,10 +114,15 @@ const PairPostDetail = () => {
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 언어 및 프레임워크
               </span>
-              <span>
-                {detailData.languages[0]}
-                {/* <LanguageIcon zIndex={"0"} language={detailData.languages[0]} /> */}
-              </span>
+              <div className="flex">
+                {detailData.languages.map((language) => (
+                  <LanguageIcon
+                    key={language.name}
+                    language={language}
+                    zIndex={`z-0`}
+                  />
+                ))}
+              </div>
             </div>
             <div className="flex">
               <span className="inline-block pr-4 text-[#6A6A6A]">

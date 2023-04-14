@@ -1,4 +1,5 @@
 import Layout from "components/layout/Layout";
+import Main from "pages/Main";
 import PairPostDetail from "pages/PairPostDetail";
 import PairPostEdit from "pages/PairPostEdit";
 import PairPostList from "pages/PairPostList";
@@ -8,7 +9,7 @@ const Router = () => {
   const routerData = [
     {
       path: "/",
-      element: <div>메인</div>,
+      element: <Main />,
     },
     {
       path: "/pairpostlist",
