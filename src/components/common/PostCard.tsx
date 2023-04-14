@@ -1,10 +1,17 @@
-import { Language } from "types/language.type";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { languageList } from "types/language.type";
+import { PairPost } from "types/post.type";
 import LanguageIcon from "./LanguageIcon";
 import Tag from "./Tag";
 
-const PostCard = ({ languages }: { languages: Language[] }) => {
+const PostCard = ({ post }: { post: PairPost }) => {
+  const navigate = useNavigate();
+  const [languages] = useState(
+    languageList.language.filter((lan) => post.language.includes(lan.name))
+  );
   const handleMoveDetail = () => {
-    // TODO: 상세 페이지 이동
+    navigate(`/pairpostdetail/${post.id}`);
   };
   return (
     <div
@@ -13,27 +20,24 @@ const PostCard = ({ languages }: { languages: Language[] }) => {
     >
       <div className="">
         <div className="flex justify-center mb-3">
-          {/* {languages.map((language) => (
-            <LanguageIcon
-              key={language.name}
-              language={language}
-              // zIndex={`z-${50 - idx * 10}`}
-            />
-          ))} */}
-          <LanguageIcon language={languages[0]} zIndex={"z-50"} />
-          <LanguageIcon language={languages[1]} zIndex={"z-40"} />
-          <LanguageIcon language={languages[0]} zIndex={"z-30"} />
-          <LanguageIcon language={languages[1]} zIndex={"z-20"} />
-          <LanguageIcon language={languages[0]} zIndex={"z-10"} />
+          {languages.length > 0 ? (
+            languages.map((lan, idx) => (
+              <LanguageIcon
+                key={lan.id}
+                language={lan}
+                zIndex={`z-[5]`.toString()}
+              />
+            ))
+          ) : (
+            <div className="h-14"></div>
+          )}
         </div>
         <hr className="relative top-[-40px] mx-[-24px]" />
       </div>
-      <h1 className="font-bold mb-3">
-        제목입니다. 페어 모집합니다. 제목은 최대 두 줄입니다.
-      </h1>
-      <div className="flex w-full justify-between">
-        <div>오늘</div>
-        <Tag text="알고리즘" />
+      <h1 className="font-bold mb-3">{post.title}</h1>
+      <div className="flex items-center w-full justify-between">
+        <div className="text-sm">{post.createdAt?.slice(0, 8)}</div>
+        <Tag text={post.category} />
       </div>
     </div>
   );

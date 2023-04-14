@@ -11,10 +11,10 @@ const DropdownOption = ({
   openedOptionNum: number;
   setOpenedOptionNum: React.Dispatch<SetStateAction<number>>;
 }) => {
-  const isOpen = option.optionNum === openedOptionNum;
+  const isOpen = option.id === openedOptionNum;
 
   const handleDown = () => {
-    setOpenedOptionNum(option.optionNum);
+    setOpenedOptionNum(option.id);
   };
 
   const handleUp = () => {
@@ -24,7 +24,9 @@ const DropdownOption = ({
   return (
     <div className="flex flex-col mr-4">
       <div className="flex items-center">
-        <div className="text-base font-bold">{option.optionName}</div>
+        <div className="text-base font-bold whitespace-nowrap">
+          {option.name}
+        </div>
         {isOpen ? (
           <button onClick={handleUp}>
             <BiChevronUp size={24} />

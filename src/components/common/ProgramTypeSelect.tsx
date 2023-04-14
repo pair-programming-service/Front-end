@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { programTypeSelect } from "state/atoms/editOptionAtom";
 import { programmingList } from "types/programming.type";
-import RoundButton from "./RoundButton";
+import TextSelect from "./TextSelect";
 
 const ProgramTypeSelect = () => {
-  const [selectedId, setSelectedId] = useState(0);
+  const [selectedId, setSelectedId] = useRecoilState(programTypeSelect);
+
   return (
-    <div className="flex gap-2">
-      {programmingList.map((programming) => (
-        <RoundButton
-          key={programming.id}
-          programming={programming}
-          isSelected={selectedId === programming.id}
-          setSelectedId={setSelectedId}
-        />
-      ))}
-    </div>
+    <TextSelect
+      options={programmingList}
+      selectedId={selectedId}
+      setSelectedId={setSelectedId}
+    />
   );
 };
 

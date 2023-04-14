@@ -1,21 +1,21 @@
 import React, { SetStateAction } from "react";
 import { Language } from "types/language.type";
 
-const LanguageButton = ({
-  language,
+const ImageButton = ({
+  option,
   isSelected,
   selectedArr,
   setSelectedArr,
 }: {
-  language: Language;
+  option: Language;
   isSelected: boolean;
   selectedArr: boolean[];
   setSelectedArr: React.Dispatch<SetStateAction<Array<boolean>>>;
 }) => {
-  const src = language.icon;
+  const src = option.icon;
   const handleSelect = () => {
     const newSelected = selectedArr.slice();
-    newSelected[language.id] = !newSelected[language.id];
+    newSelected[option.id] = !newSelected[option.id];
     setSelectedArr(newSelected);
   };
   return (
@@ -30,4 +30,4 @@ const LanguageButton = ({
   );
 };
 
-export default LanguageButton;
+export default ImageButton;
