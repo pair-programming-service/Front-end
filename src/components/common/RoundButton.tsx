@@ -1,17 +1,18 @@
 import React from "react";
+import { FilterOption } from "types/filter.type";
 import { Programming } from "types/programming.type";
 
 const RoundButton = ({
-  programming,
+  option,
   isSelected,
   setSelectedId,
 }: {
-  programming: Programming;
+  option: Programming | FilterOption;
   isSelected: boolean;
   setSelectedId: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const handleSelect = () => {
-    setSelectedId(programming.id);
+    setSelectedId(option.id);
   };
   return (
     <button
@@ -20,7 +21,7 @@ const RoundButton = ({
       } h-10 px-4 rounded-full border shadow-md shadow-gray-400`}
       onClick={handleSelect}
     >
-      {programming.name}
+      {option.name}
     </button>
   );
 };
