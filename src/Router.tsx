@@ -19,7 +19,11 @@ const Router = () => {
       element: <PairPostEdit />,
     },
     {
-      path: "/pairpostdetail",
+      path: "/pairpostedit/:id",
+      element: <PairPostEdit />,
+    },
+    {
+      path: "/pairpostdetail/:id",
       element: <PairPostDetail />,
     },
   ];
