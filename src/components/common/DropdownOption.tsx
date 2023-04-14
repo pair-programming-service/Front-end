@@ -24,7 +24,9 @@ const DropdownOption = ({
   return (
     <div className="flex flex-col mr-4">
       <div className="flex items-center">
-        <div className="text-base font-bold">{option.name}</div>
+        <div className="text-base font-bold whitespace-nowrap">
+          {option.name}
+        </div>
         {isOpen ? (
           <button onClick={handleUp}>
             <BiChevronUp size={24} />
