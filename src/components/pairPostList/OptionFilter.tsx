@@ -25,7 +25,7 @@ const OptionFilter = () => {
   }, []);
   return (
     <div className="mb-4">
-      <div className="flex mb-4">
+      <div className="flex flex-wrap mb-4">
         {optionList.map((option) => (
           <DropdownOption
             key={option.id}
@@ -35,7 +35,9 @@ const OptionFilter = () => {
           />
         ))}
         <div className="flex items-center mr-4">
-          <div className="text-base font-bold mr-1">모집 중</div>
+          <div className="text-base font-bold mr-1 whitespace-nowrap">
+            모집 중
+          </div>
           {isRecruiting ? (
             <RiCheckboxCircleFill
               size={20}
@@ -53,7 +55,9 @@ const OptionFilter = () => {
           )}
         </div>
         <div className="flex items-center">
-          <div className="text-base font-bold mr-1">초기화</div>
+          <div className="text-base font-bold mr-1 whitespace-nowrap">
+            초기화
+          </div>
           <GrPowerReset size={16} cursor={"pointer"} onClick={handleReset} />
         </div>
       </div>
