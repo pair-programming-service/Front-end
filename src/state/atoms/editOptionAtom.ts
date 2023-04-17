@@ -13,12 +13,12 @@ export const frameworkSelect = atom({
 
 export const programTypeSelect = atom({
   key: "programTypeSelect",
-  default: 0,
+  default: -1,
 });
 
 export const onOffSelect = atom({
   key: "onOffSelect",
-  default: 0,
+  default: -1,
 });
 
 export const ideSelect = atom({
@@ -28,7 +28,7 @@ export const ideSelect = atom({
 
 export const durationSelect = atom({
   key: "durationSelect",
-  default: 0,
+  default: -1,
 });
 
 export const startDateSelect = atom({

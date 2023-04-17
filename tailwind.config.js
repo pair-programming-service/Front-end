@@ -17,4 +17,5 @@ export const theme = {
     },
   },
 };
+export const safelist = ["z-[1]", "z-[2]", "z-[3]", "z-[4]", "z-[5]"];
 export const plugins = [];
