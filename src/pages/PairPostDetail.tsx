@@ -5,10 +5,10 @@ import axios from "axios";
 import MarkdownView from "components/MarkdownView";
 import Tag from "components/common/Tag";
 import LanguageIcon from "components/common/LanguageIcon";
-import { Language } from "types/language.type";
+import { Language, languageList } from "types/language.type";
 import SquareButton from "components/common/SquareButton";
 
-type DetailData = {
+interface DetailData {
   id: number;
   title: string;
   content: string;
@@ -17,16 +17,21 @@ type DetailData = {
   proceed: string;
   category: string;
   runningDate: string;
-  language: Language[];
+  language: string[];
   createdAt: string;
   updatedAt: string;
   status: false;
   viewCount: number;
-};
+}
 
 const PairPostDetail = () => {
   const navigate = useNavigate();
   const [detailData, setDetailData] = useState<DetailData>();
+  const [languages] = useState(
+    languageList.language.filter((lan) =>
+      detailData?.language.includes(lan.name)
+    )
+  );
   const id = useParams().id;
 
   const detailAPI = useCallback(async () => {
@@ -60,7 +65,7 @@ const PairPostDetail = () => {
           <HiArrowLeft className="w-6 h-6" />
         </button>
       </div>
-      <div className="w-[1000px] mx-auto block  box-border">
+      <div className="w-full mx-auto block  box-border">
         <section>
           <div className="flex justify-between">
             <div className="w-lg flex">
@@ -81,7 +86,7 @@ const PairPostDetail = () => {
           </div>
           <div className="py-2 flex justify-between">
             <div>
-              <span className="font-semibold">작성자</span>
+              {/* <span className="font-semibold">작성자</span> */}
               <span className=" pl-2">{detailData?.createdAt}</span>
             </div>
             <span>조회수 {detailData?.viewCount}</span>
@@ -107,11 +112,11 @@ const PairPostDetail = () => {
                 언어 및 프레임워크
               </span>
               <div className="flex">
-                {detailData.language.map((language) => (
+                {languages.map((lan, idx) => (
                   <LanguageIcon
-                    key={language.name}
-                    language={language}
-                    zIndex={`z-0`}
+                    key={lan.id}
+                    language={lan}
+                    zIndex={`z-[0]`.toString()}
                   />
                 ))}
               </div>
