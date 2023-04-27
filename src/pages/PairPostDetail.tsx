@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi2";
-import axios from "axios";
 import MarkdownView from "components/MarkdownView";
 import Tag from "components/common/Tag";
 import LanguageIcon from "components/common/LanguageIcon";
 import { Language, languageList } from "types/language.type";
 import SquareButton from "components/common/SquareButton";
+import { getPairPost } from "apis/pairpost";
 
 interface DetailData {
   id: number;
@@ -34,17 +34,11 @@ const PairPostDetail = () => {
   );
   const id = useParams().id;
 
-  const detailAPI = useCallback(async () => {
-    const response = await axios.get(
-      `http://3.34.199.130:8080/api/board/detail/${id}`
-    );
-    console.log(response.data.data);
-    setDetailData(response.data.data);
-  }, [id]);
-
   useEffect(() => {
-    detailAPI();
-  }, [detailAPI]);
+    getPairPost(Number(id)).then((res) => {
+      setDetailData(res.data.data);
+    });
+  }, [id]);
 
   const handleBackButton = () => {
     // navigate(`/pairpostlist`); // 어디로 가는게 맞을까요?
