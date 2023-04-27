@@ -1,8 +1,8 @@
 const Main = () => {
   return (
-    <main className="w-screen ml-[calc(-50vw + 50%)]">
+    <main className="w-screen -mx-[170px]">
       <section className="h-screen bg-[#D6E6F2]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               페어랑 코딩하자!
@@ -24,7 +24,7 @@ const Main = () => {
         </div>
       </section>
       <section className="h-screen bg-[#F7FBFC]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               누구랑 페어하지?
@@ -47,7 +47,7 @@ const Main = () => {
         </div>
       </section>
       <section className="h-screen bg-[#B9D7EA]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               내가 원하는대로!
