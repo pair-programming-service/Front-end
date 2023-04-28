@@ -8,6 +8,9 @@ import { BiFirstPage, BiLastPage } from "react-icons/bi";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Pagination from "react-js-pagination";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { languageFilter } from "state/atoms/filterOptionAtom";
+import { languageList } from "types/language.type";
 import { PairPost } from "types/post.type";
 import { ButtonStyle } from "types/styles.type";
 
@@ -16,6 +19,7 @@ const PairPostList = () => {
   const buttonStyle: ButtonStyle = { isWhite: false };
   const [postList, setPostList] = useState([] as PairPost[]);
   const [totalPage, setTotalPage] = useState(1);
+  const lanFilter = useRecoilValue(languageFilter);
 
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState("");
@@ -23,12 +27,20 @@ const PairPostList = () => {
   const searchValue = searchParams.get("search");
 
   useEffect(() => {
-    setSearchInput(searchValue || "");
-    getPairPostList(nowPage, 20, searchValue || "").then((res) => {
-      setPostList(res.data.data);
-      setTotalPage(res.data.page);
+    const filterdLanNames: string[] = [];
+    lanFilter.forEach((bool, idx) => {
+      if (bool) {
+        filterdLanNames.push(languageList.language[idx].name);
+      }
     });
-  }, [searchValue, nowPage]);
+    setSearchInput(searchValue || "");
+    getPairPostList(nowPage, 20, searchValue || "", filterdLanNames).then(
+      (res) => {
+        setPostList(res.data.data);
+        setTotalPage(res.data.page);
+      }
+    );
+  }, [searchValue, nowPage, ...lanFilter]);
 
   const handleSearch = () => {
     navigate(`/pairpostlist?search=${searchInput}&page=1`);

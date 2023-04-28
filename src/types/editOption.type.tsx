@@ -1,8 +1,10 @@
+import LanguageSelect from "components/common/LanguageSelect";
+import ProgramTypeSelect from "components/common/ProgramTypeSelect";
 import DurationSelect from "components/pairPostEdit/DurationSelect";
 import IDESelect from "components/pairPostEdit/IDESelect";
 import OnOffSelect from "components/pairPostEdit/OnOffSelect";
 import StartDateSelect from "components/pairPostEdit/StartDateSelect";
-import { FilterOption, optionList } from "./filter.type";
+import { FilterOption } from "./filter.type";
 import { ideList } from "./ide.type";
 
 export interface OnOff {
@@ -46,7 +48,16 @@ export const durationList: Duration[] = [
 ];
 
 export const editOptionList: FilterOption[] = [
-  ...optionList,
+  {
+    id: 0,
+    name: "언어 및 프레임워크",
+    selectComponent: <LanguageSelect isEdit={true} />,
+  },
+  {
+    id: 1,
+    name: "프로그래밍 유형",
+    selectComponent: <ProgramTypeSelect isEdit={true} />,
+  },
   {
     id: 2,
     name: "진행 방식",
