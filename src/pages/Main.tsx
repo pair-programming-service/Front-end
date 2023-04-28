@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
 import { getPairPostList } from "apis/pairpost";
 import PostList from "components/pairPostList/PostList";
+import { useEffect, useState } from "react";
 import { PairPost } from "types/post.type";
 
 const Main = () => {
   const [postList, setPostList] = useState([] as PairPost[]);
 
   useEffect(() => {
-    getPairPostList(1, 4, "" || "").then((res) => {
+    getPairPostList(1, 4, "" || "", []).then((res) => {
       setPostList(res.data.data);
     });
   }, []);
