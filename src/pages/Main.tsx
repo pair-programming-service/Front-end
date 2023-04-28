@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
+import { getPairPostList } from "apis/pairpost";
+import PostList from "components/pairPostList/PostList";
+import { PairPost } from "types/post.type";
+
 const Main = () => {
+  const [postList, setPostList] = useState([] as PairPost[]);
+
+  useEffect(() => {
+    getPairPostList(1, 4, "" || "").then((res) => {
+      setPostList(res.data.data);
+    });
+  }, []);
+
   return (
-    <main className="w-screen ml-[calc(-50vw + 50%)]">
+    <main className="w-screen -mx-[170px]">
       <section className="h-screen bg-[#D6E6F2]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               페어랑 코딩하자!
@@ -24,7 +37,7 @@ const Main = () => {
         </div>
       </section>
       <section className="h-screen bg-[#F7FBFC]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               누구랑 페어하지?
@@ -34,7 +47,7 @@ const Main = () => {
               없다면?
               <br />
               코딩메이트에서 페어를 찾아보세요.
-              <br /># 원하는 시간 # 온라인 #오프라인
+              <br /># 원하는 시간 # 온라인 # 오프라인
             </p>
           </div>
           <div className="mt-32 block relative">
@@ -47,7 +60,7 @@ const Main = () => {
         </div>
       </section>
       <section className="h-screen bg-[#B9D7EA]">
-        <div className="max-w-[1180px] flex justify-between items-center">
+        <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
             <h1 className="pt-40 text-[48px] font-semibold">
               내가 원하는대로!
@@ -70,7 +83,14 @@ const Main = () => {
         </div>
       </section>
       {/* // TODO: 추후 채팅기능 소개 부분 */}
-      <section>최신 게시글</section>
+      <section className="max-w-[1180px] mx-[170px]">
+        <div className="w-full pt-24 flex justify-center items-center text-2xl font-bold  mb-4">
+          페어 모집 글 목록
+        </div>
+        <div className="flex w-full gap-4 mb-4">
+          <PostList postList={postList} />
+        </div>
+      </section>
     </main>
   );
 };
