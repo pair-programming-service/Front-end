@@ -1,12 +1,12 @@
 import { useRecoilState } from "recoil";
-import { frameworkSelect, languageSelect } from "state/atoms/editOptionAtom";
+import { languageSelect } from "state/atoms/editOptionAtom";
+import { languageFilter } from "state/atoms/filterOptionAtom";
 import { languageList } from "types/language.type";
 import ImageButton from "./ImageButton";
 
-const LanguageSelect = () => {
+const LanguageSelect = ({ isEdit }: { isEdit: boolean }) => {
   const [lanSelectedArr, setLanSelectedArr] = useRecoilState(languageSelect);
-  const [frameSelectedArr, setFrameSelectedArr] =
-    useRecoilState(frameworkSelect);
+  const [lanFilteredArr, setLanFilteredArr] = useRecoilState(languageFilter);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
@@ -14,20 +14,11 @@ const LanguageSelect = () => {
           <ImageButton
             key={language.id}
             option={language}
-            isSelected={lanSelectedArr[language.id]}
-            setSelectedArr={setLanSelectedArr}
-            selectedArr={lanSelectedArr}
-          />
-        ))}
-      </div>
-      <div className="flex items-center gap-2">
-        {languageList.framework.map((framework) => (
-          <ImageButton
-            key={framework.id}
-            option={framework}
-            isSelected={frameSelectedArr[framework.id]}
-            setSelectedArr={setFrameSelectedArr}
-            selectedArr={frameSelectedArr}
+            isSelected={
+              isEdit ? lanSelectedArr[language.id] : lanFilteredArr[language.id]
+            }
+            setSelectedArr={isEdit ? setLanSelectedArr : setLanFilteredArr}
+            selectedArr={isEdit ? lanSelectedArr : lanFilteredArr}
           />
         ))}
       </div>

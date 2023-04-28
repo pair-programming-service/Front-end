@@ -4,10 +4,15 @@ import request from "./base";
 export const getPairPostList = (
   page: number,
   size: number,
-  searchValue: string
+  searchValue: string,
+  filteredLanNames: string[]
 ) => {
   return request({
-    url: `/board/all?page=${page}&size=${size}&search=${searchValue}`,
+    url: `/board/all?page=${page}&size=${size}&search=${searchValue}&${
+      filteredLanNames.length > 0
+        ? filteredLanNames.map((el) => el + "=true").join("&")
+        : ""
+    }`,
   });
 };
 

@@ -6,11 +6,6 @@ export const languageSelect = atom({
   default: new Array(languageList.language.length).fill(false),
 });
 
-export const frameworkSelect = atom({
-  key: "frameworkSelect",
-  default: new Array(languageList.framework.length).fill(false),
-});
-
 export const programTypeSelect = atom({
   key: "programTypeSelect",
   default: -1,
