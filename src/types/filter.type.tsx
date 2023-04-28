@@ -12,11 +12,11 @@ export const optionList: FilterOption[] = [
   {
     id: 0,
     name: "언어 및 프레임워크",
-    selectComponent: <LanguageSelect />,
+    selectComponent: <LanguageSelect isEdit={false} />,
   },
   {
     id: 1,
     name: "프로그래밍 유형",
-    selectComponent: <ProgramTypeSelect />,
+    selectComponent: <ProgramTypeSelect isEdit={false} />,
   },
 ];

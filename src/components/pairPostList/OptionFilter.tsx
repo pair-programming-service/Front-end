@@ -4,15 +4,23 @@ import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { RiCheckboxCircleFill, RiCheckboxCircleLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import {
+  languageFilter,
+  programTypeFilter,
+} from "state/atoms/filterOptionAtom";
 import { optionList } from "types/filter.type";
+import { languageList } from "types/language.type";
 
 const OptionFilter = () => {
+  const setLanFilteredArr = useSetRecoilState(languageFilter);
+  const setProgramFilteredId = useSetRecoilState(programTypeFilter);
   const [openedOptionNum, setOpenedOptionNum] = useState(0);
   const [isRecruiting, setIsRecruiting] = useState(true);
   const navigate = useNavigate();
   const handleReset = () => {
-    // TODO: 옵션 초기화
-    // Recoil로 옵션 관리하기
+    setLanFilteredArr(new Array(languageList.language.length).fill(false));
+    setProgramFilteredId(-1);
   };
   const handleIsRecruiting = () => {
     setIsRecruiting(!isRecruiting);
