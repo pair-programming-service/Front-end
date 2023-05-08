@@ -55,7 +55,7 @@ const PairPostEdit = () => {
             .id
         );
         setLanguageSelectArr(
-          languageList.language.filter((lan) =>
+          languageList.filter((lan) =>
             res.data.data.language.includes(lan.name)
           )
         );
@@ -67,12 +67,12 @@ const PairPostEdit = () => {
     const post: PairPost = {
       title,
       content: editorRef.current?.getInstance().getMarkdown() || "",
-      ide: ideList.filter((el) => ide === el.id).map((el) => el.name)[0],
+      ide: ideList.filter((el) => ide === el.id).map((el) => el.name)[0], // find 함수로 바꿔도 될 듯
       runningTime: durationList.filter((el) => duration === el.id)[0].name,
       proceed: onOffList.filter((el) => onOff === el.id)[0].name,
       category: programmingList.filter((el) => programType === el.id)[0].name,
       runningDate: startDate,
-      language: languageList.language
+      language: languageList
         .filter((lan) => languageSelectArr[lan.id])
         .map((el) => el.name),
     };

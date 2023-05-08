@@ -15,51 +15,45 @@ export interface Language {
   icon: ReactElement;
 }
 
-export type LanguageList = {
-  language: Language[];
-};
-
-export const languageList: LanguageList = {
-  language: [
-    {
-      id: 0,
-      name: "javaScript",
-      icon: <RoundImage src={JavaScriptSvg} />,
-    } as Language,
-    {
-      id: 1,
-      name: "typeScript",
-      icon: <RoundImage src={TypeScriptSvg} />,
-    } as Language,
-    {
-      id: 2,
-      name: "nodeJs",
-      icon: <RoundImage src={NodeJSSvg} />,
-    } as Language,
-    {
-      id: 3,
-      name: "python",
-      icon: <RoundImage src={PythonSvg} />,
-    } as Language,
-    {
-      id: 4,
-      name: "java",
-      icon: <RoundImage src={JavaSvg} />,
-    } as Language,
-    {
-      id: 5,
-      name: "cLanguage",
-      icon: <RoundImage src={CSvg} />,
-    } as Language,
-    {
-      id: 6,
-      name: "cSharp",
-      icon: <RoundImage src={CSharpSvg} />,
-    } as Language,
-    {
-      id: 7,
-      name: "cPlusPlus",
-      icon: <RoundImage src={CppSvg} />,
-    } as Language,
-  ],
-};
+export const languageList: Language[] = [
+  {
+    id: 0,
+    name: "javaScript",
+    icon: <RoundImage src={JavaScriptSvg} />,
+  } as Language,
+  {
+    id: 1,
+    name: "typeScript",
+    icon: <RoundImage src={TypeScriptSvg} />,
+  } as Language,
+  {
+    id: 2,
+    name: "nodeJs",
+    icon: <RoundImage src={NodeJSSvg} />,
+  } as Language,
+  {
+    id: 3,
+    name: "python",
+    icon: <RoundImage src={PythonSvg} />,
+  } as Language,
+  {
+    id: 4,
+    name: "java",
+    icon: <RoundImage src={JavaSvg} />,
+  } as Language,
+  {
+    id: 5,
+    name: "cLanguage",
+    icon: <RoundImage src={CSvg} />,
+  } as Language,
+  {
+    id: 6,
+    name: "cSharp",
+    icon: <RoundImage src={CSharpSvg} />,
+  } as Language,
+  {
+    id: 7,
+    name: "cPlusPlus",
+    icon: <RoundImage src={CppSvg} />,
+  } as Language,
+];
