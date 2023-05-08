@@ -38,7 +38,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {routerData.map((data) => (
-          <Route key={data.path} path="/" element={<Layout />}>
+          <Route key={data.path} path="/" element={<Layout path={data.path} />}>
             <Route path={data.path} element={data.element} />
           </Route>
         ))}
