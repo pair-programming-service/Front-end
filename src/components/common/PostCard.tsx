@@ -36,7 +36,7 @@ const PostCard = ({ post }: { post: PairPost }) => {
       </div>
       <h1 className="font-bold mb-3">{post.title}</h1>
       <div className="flex items-center w-full justify-between">
-        <div className="text-sm">{post.createdAt?.slice(0, 8)}</div>
+        <div className="text-sm">{post.createdAt?.slice(0, 10)}</div>
         <Tag text={post.category} />
       </div>
     </div>
