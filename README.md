@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+# 코딩메이트 프론트엔드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![gothic](https://user-images.githubusercontent.com/45119238/236136092-fd64b70a-c96a-4011-b894-8048615e1c2c.png)
 
-## Available Scripts
+## 개발 기간
 
-In the project directory, you can run:
+2023.04.03 ~ 진행 중
 
-### `npm start`
+## 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 언어
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+TypeScript
 
-### `npm test`
+### 라이브러리
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React
 
-### `npm run build`
+### CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Tailwind CSS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 상태 관리
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Recoil
 
-### `npm run eject`
+## 코딩메이트란?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+페어 프로그래밍은 두 명의 개발자가 함께 프로그래밍하는 기술로, 코드를 작성하는 과정에서 서로 의견을 나누고 함께 고민하며 효율적으로 문제를 해결하는 방법입니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+페어 프로그래밍을 시작하기 위해서는 적합한 **페어**를 찾는 것이 가장 중요합니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**코딩메이트**에서는 개발자들이 사용할 프로그래밍 언어, 프로그래밍 유형 등의 정보를 통해 페어를 구할 수 있습니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 스크린샷
 
-## Learn More
+### 메인 페이지
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img width="1498" alt="image" src="https://user-images.githubusercontent.com/45119238/236139451-78546a13-f0af-4d6a-9e0e-96a861c3365d.png">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+페어 프로그래밍과 코딩메이트의 간단한 설명을 볼 수 있습니다.
+
+### 페어 모집 글 목록
+
+<img width="1512" alt="스크린샷 2023-05-04 오후 4 43 39" src="https://user-images.githubusercontent.com/45119238/236141192-c00da3f9-0ff5-424f-81b7-aa064b62cad0.png">
+  
+페어 모집 글 목록을 검색하거나 필터링할 수 있습니다.
+
+### 페어 모집 글 작성
+
+![2023-05-04 16 37 49](https://user-images.githubusercontent.com/45119238/236140095-29ca6afe-1c4a-4b85-a5c4-66460f312a5c.gif)
+
+언어 및 프레임워크, 프로그래밍 유형 등 모집 글의 세부 정보를 선택해서 글을 등록할 수 있습니다.
+
+# Commit Convention
+
+| 태그             | 설명                                                                      |
+| ---------------- | ------------------------------------------------------------------------- |
+| feat             | 새로운 기능을 추가할 경우                                                 |
+| fix              | 버그를 고친 경우                                                          |
+| design           | CSS 등 사용자 UI 디자인 변경                                              |
+| style            | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우                     |
+| refactor         | 프로덕션 코드 리팩토링                                                    |
+| comment          | 필요한 주석 추가 및 변경                                                  |
+| docs             | 문서를 수정한 경우                                                        |
+| test             | 테스트 추가, 테스트 리팩토링(프로덕션 코드 변경 X)                        |
+| chore            | 빌드 태스트 업데이트, 패키지 매니저를 설정하는 경우(프로덕션 코드 변경 X) |
+| rename           | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우                        |
+| remove           | 파일을 삭제하는 작업만 수행한 경우                                        |
+| !BREAKING CHANGE | 커다란 API 변경의 경우                                                    |
+| !HOTFIX          | 급하게 치명적인 버그를 고쳐야하는 경우                                    |
