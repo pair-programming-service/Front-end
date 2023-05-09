@@ -25,7 +25,7 @@ const PostCard = ({ post }: { post: PairPost }) => {
               <LanguageIcon
                 key={lan.id}
                 language={lan}
-                zIndex={`z-[${5 - idx}]`.toString()}
+                zIndex={`z-[${5 - idx}]`}
               />
             ))
           ) : (
