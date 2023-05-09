@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { HiArrowLeft } from "react-icons/hi2";
-import axios from "axios";
+import { getPairPost } from "apis/pairpost";
 import MarkdownView from "components/MarkdownView";
-import Tag from "components/common/Tag";
 import LanguageIcon from "components/common/LanguageIcon";
-import { Language } from "types/language.type";
 import SquareButton from "components/common/SquareButton";
+import Tag from "components/common/Tag";
+import { useCallback, useEffect, useState } from "react";
+import { HiArrowLeft } from "react-icons/hi2";
+import { useNavigate, useParams } from "react-router-dom";
+import { ideList } from "types/ide.type";
+import { languageList } from "types/language.type";
 
 type DetailData = {
   id: number;
@@ -17,7 +18,7 @@ type DetailData = {
   proceed: string;
   category: string;
   runningDate: string;
-  language: Language[];
+  language: string[];
   createdAt: string;
   updatedAt: string;
   status: false;
@@ -27,13 +28,10 @@ type DetailData = {
 const PairPostDetail = () => {
   const navigate = useNavigate();
   const [detailData, setDetailData] = useState<DetailData>();
-  const id = useParams().id;
+  const id = useParams().id || "";
 
   const detailAPI = useCallback(async () => {
-    const response = await axios.get(
-      `http://3.34.199.130:8080/api/board/detail/${id}`
-    );
-    console.log(response.data.data);
+    const response = await getPairPost(+id);
     setDetailData(response.data.data);
   }, [id]);
 
@@ -42,7 +40,6 @@ const PairPostDetail = () => {
   }, [detailAPI]);
 
   const handleBackButton = () => {
-    // navigate(`/pairpostlist`); // 어디로 가는게 맞을까요?
     navigate(-1);
   };
 
@@ -51,17 +48,17 @@ const PairPostDetail = () => {
   };
 
   return detailData ? (
-    <main className="pt-20 flex justify-center">
-      <div>
+    <main className="px-20 pt-20 flex flex-col justify-center w-full">
+      <div className="relative -left-20 pl-4">
         <button
-          className="w-10 h-10 rounded-lg border bg-white flex box-border fixed justify-center items-center"
+          className="w-10 h-10 rounded-lg border bg-white flex box-border justify-center items-center"
           onClick={handleBackButton}
         >
           <HiArrowLeft className="w-6 h-6" />
         </button>
       </div>
-      <div className="mx-auto block  box-border">
-        <section>
+      <div className="box-border w-full relative -top-9">
+        <section className="w-full">
           <div className="flex justify-between">
             <div className="w-lg flex">
               <h1 className="pr-2 inline font-bold text-2xl leading-normal">
@@ -107,13 +104,17 @@ const PairPostDetail = () => {
                 언어 및 프레임워크
               </span>
               <div className="flex">
-                {detailData.language.map((language) => (
-                  <LanguageIcon
-                    key={language.name}
-                    language={language}
-                    zIndex={`z-0`}
-                  />
-                ))}
+                {detailData.language.map((name, idx) => {
+                  const now = languageList.find((lan) => lan.name === name);
+                  if (now)
+                    return (
+                      <LanguageIcon
+                        key={now?.id}
+                        language={now}
+                        zIndex={`z-[${5 - idx}]`}
+                      />
+                    );
+                })}
               </div>
             </div>
             <div className="flex">
@@ -126,7 +127,9 @@ const PairPostDetail = () => {
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 개발 도구
               </span>
-              <p>{detailData.ide}</p>
+              <span className="w-14 h-14 rounded-full overflow-hidden border">
+                {ideList.find((ide) => ide.name === detailData.ide)?.icon}
+              </span>
             </div>
             <div className="flex">
               <span className="inline-block pr-4 text-[#6A6A6A]">

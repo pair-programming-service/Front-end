@@ -3,7 +3,7 @@ import { languageList } from "types/language.type";
 
 export const languageSelect = atom({
   key: "languageSelect",
-  default: new Array(languageList.language.length).fill(false),
+  default: new Array(languageList.length).fill(false),
 });
 
 export const programTypeSelect = atom({

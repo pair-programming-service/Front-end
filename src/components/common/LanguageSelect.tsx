@@ -10,7 +10,7 @@ const LanguageSelect = ({ isEdit }: { isEdit: boolean }) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        {languageList.language.map((language) => (
+        {languageList.map((language) => (
           <ImageButton
             key={language.id}
             option={language}

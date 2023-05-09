@@ -1,11 +1,12 @@
-import { Outlet } from "react-router-dom";
 import Header from "components/Header";
+import { Outlet } from "react-router-dom";
 
-const Layout = () => {
+const Layout = ({ path }: { path: string }) => {
+  const maxWidth = path === "/" ? "" : "max-w-[1180px]";
   return (
-    <div>
+    <div className="h-screen">
       <Header />
-      <div className="max-w-[1180px] mx-auto">
+      <div className={`${maxWidth} mx-auto h-full`}>
         <Outlet />
       </div>
     </div>

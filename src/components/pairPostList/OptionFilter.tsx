@@ -19,7 +19,7 @@ const OptionFilter = () => {
   const [isRecruiting, setIsRecruiting] = useState(true);
   const navigate = useNavigate();
   const handleReset = () => {
-    setLanFilteredArr(new Array(languageList.language.length).fill(false));
+    setLanFilteredArr(new Array(languageList.length).fill(false));
     setProgramFilteredId(-1);
   };
   const handleIsRecruiting = () => {

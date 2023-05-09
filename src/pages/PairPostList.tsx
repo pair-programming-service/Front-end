@@ -30,7 +30,7 @@ const PairPostList = () => {
     const filterdLanNames: string[] = [];
     lanFilter.forEach((bool, idx) => {
       if (bool) {
-        filterdLanNames.push(languageList.language[idx].name);
+        filterdLanNames.push(languageList[idx].name);
       }
     });
     setSearchInput(searchValue || "");

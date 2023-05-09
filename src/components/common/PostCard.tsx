@@ -8,7 +8,7 @@ import Tag from "./Tag";
 const PostCard = ({ post }: { post: PairPost }) => {
   const navigate = useNavigate();
   const [languages] = useState(
-    languageList.language.filter((lan) => post.language.includes(lan.name))
+    languageList.filter((lan) => post.language.includes(lan.name))
   );
   const handleMoveDetail = () => {
     navigate(`/pairpostdetail/${post.id}`);
@@ -25,7 +25,7 @@ const PostCard = ({ post }: { post: PairPost }) => {
               <LanguageIcon
                 key={lan.id}
                 language={lan}
-                zIndex={`z-[${5 - idx}]`.toString()}
+                zIndex={`z-[${5 - idx}]`}
               />
             ))
           ) : (

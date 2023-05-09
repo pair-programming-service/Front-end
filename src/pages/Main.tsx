@@ -13,7 +13,7 @@ const Main = () => {
   }, []);
 
   return (
-    <main className="w-screen -mx-[170px]">
+    <main className="w-screen pb-20">
       <section className="h-screen bg-[#D6E6F2]">
         <div className="max-w-[1180px] mx-[170px] my-auto flex justify-between items-center">
           <div className="mx-8 block relative">
