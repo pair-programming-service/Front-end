@@ -1,4 +1,6 @@
 import React from "react";
+import kakaoSvg from "../assets/images/register/talk.svg";
+import iconX from "../assets/images/register/closeX.svg";
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,43 +13,53 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
       {isOpen ? (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg overflow-hidden shadow-xl w-full sm:w-1/2 lg:w-1/3">
-            <div className="px-6 py-4">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6 mt-8 text-center">
-                코딩메이트 (임시 Title)
-              </h2>
-              <form>
-                <div className="mb-6">
-                  <input
-                    className="w-full h-14 px-3 py-2 border rounded-lg outline-none font-medium"
-                    type="email"
-                    placeholder="이메일"
-                  />
-                </div>
-                <div className="mb-6">
-                  <input
-                    className="w-full h-14 px-3 py-2 border rounded-lg outline-none font-medium"
-                    type="password"
-                    placeholder="비밀번호"
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    className="bg-cm-400 h-14 mt-1 text-lg text-white font-bold w-full px-3 py-2 border rounded-lg"
-                    type="submit"
-                  >
-                    로그인
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="bg-gray-100 px-6 py-4">
+            <div className="flex justify-end">
               <button
-                className="text-gray-600 font-semibold hover:text-gray-800 focus:outline-none"
+                className="mt-5 mr-5"
                 type="button"
                 onClick={() => setIsModalOpen(false)}
               >
-                Close
+                <img src={iconX} className="w-8" />
               </button>
+            </div>
+            <div className="px-8 py-4">
+              <div className="flex justify-center -mt-11">
+                <img
+                  src={require("../assets/images/logo/gothic.png")}
+                  className="h-44 "
+                />
+              </div>
+              <div className="flex justify-center items-center mb-6 -mt-8">
+                <input
+                  className="w-11/12 h-14 px-3 py-2 border rounded-lg outline-none font-medium"
+                  type="email"
+                  placeholder="이메일"
+                />
+              </div>
+              <div className="flex justify-center items-center mb-6">
+                <input
+                  className="w-11/12 h-14 px-3 py-2 border rounded-lg outline-none font-medium"
+                  type="password"
+                  placeholder="비밀번호"
+                />
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className="bg-cm-400 h-14 mt-3 text-lg text-white font-bold w-11/12 px-3 py-2 border rounded-lg"
+                  type="submit"
+                >
+                  로그인
+                </button>
+              </div>
+              <div className="flex justify-center text-center mb-8">
+                <button
+                  type="submit"
+                  className="bg-yellow-300 h-14 mt-7 text-lg text-black font-semibold w-11/12 px-3 py-2 border rounded-lg items-center"
+                >
+                  <img src={kakaoSvg} className="w-6 h-7 absolute ml-4" />
+                  <span>카카오로 시작하기</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
