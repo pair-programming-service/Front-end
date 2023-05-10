@@ -1,6 +1,6 @@
 import React from "react";
-import kakaoSvg from "../assets/images/register/talk.svg";
-import iconX from "../assets/images/register/closeX.svg";
+import kakaoSvg from "../assets/images/login/kakao.svg";
+import iconX from "../assets/images/login/iconX.svg";
 
 interface ModalProps {
   isOpen: boolean;
