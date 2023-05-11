@@ -1,8 +1,8 @@
-import Login from "pages/Login";
-import { useState } from "react";
+// import Login from "pages/Login";
+// import { useState } from "react";
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <header className="block w-full fixed z-10 h-16 text-base font-bold shadow-md bg-white">
@@ -26,14 +26,14 @@ const Header = () => {
             </a>
           </div>
 
-          {/* 임시 로그인 버튼입니다. 추후 디자인 적용 예정 */}
+          {/* 임시 로그인 버튼입니다. 추후 디자인 적용 예정
           <button onClick={() => setIsModalOpen(true)}>
             {" "}
             <p className="flex px-4 py-4 text-[#000000] hover:text-[#769FCD]">
               로그인(임시)
             </p>
           </button>
-          <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+          <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} /> */}
 
           {/* <div>
             <a
