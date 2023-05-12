@@ -5,14 +5,17 @@ export const getPairPostList = (
   page: number,
   size: number,
   searchValue: string,
-  filteredLanNames: string[]
+  filteredLanNames: string[],
+  category?: string
 ) => {
+  const languages =
+    filteredLanNames.length > 0
+      ? filteredLanNames.map((el) => el + "=true").join("&")
+      : "";
   return request({
-    url: `/board/all?page=${page}&size=${size}&search=${searchValue}&${
-      filteredLanNames.length > 0
-        ? filteredLanNames.map((el) => el + "=true").join("&")
-        : ""
-    }`,
+    url: `/board/all?page=${page}&size=${size}&search=${searchValue}&${languages}&category=${encodeURI(
+      category ? category : ""
+    )}`,
   });
 };
 
