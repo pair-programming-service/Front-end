@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import kakaoSvg from "../../assets/images/login/kakao.svg";
 import iconX from "../../assets/images/login/iconX.svg";
+import { handleLogin } from "apis/login";
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,12 +12,30 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // email 처리
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
+  // password 처리
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  // Enter키 눌렸을 때 event 처리
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  // 로그인 기능 구현
+  const handleSubmit = () => {
+    handleLogin(email, password).then(() => {
+      setIsModalOpen(false);
+      setEmail("");
+      setPassword("");
+    });
   };
 
   return (
@@ -47,6 +66,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   placeholder="이메일"
                   value={email}
                   onChange={handleChangeEmail}
+                  onKeyDown={handleEnterPress}
                 />
               </div>
               <div className="flex justify-center items-center mb-6">
@@ -56,12 +76,14 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   placeholder="비밀번호"
                   value={password}
                   onChange={handleChangePassword}
+                  onKeyDown={handleEnterPress}
                 />
               </div>
               <div className="flex justify-center">
                 <button
                   className="bg-cm-400 h-14 mt-3 text-lg text-white font-bold w-11/12 px-3 py-2 border rounded-lg"
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   로그인
                 </button>
