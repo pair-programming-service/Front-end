@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import kakaoSvg from "../assets/images/login/kakao.svg";
 import iconX from "../assets/images/login/iconX.svg";
 
@@ -8,6 +8,17 @@ interface ModalProps {
 }
 
 const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <>
       {isOpen ? (
@@ -34,6 +45,8 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   className="w-11/12 h-14 px-3 py-2 border rounded-lg outline-none font-medium"
                   type="email"
                   placeholder="이메일"
+                  value={email}
+                  onChange={handleChangeEmail}
                 />
               </div>
               <div className="flex justify-center items-center mb-6">
@@ -41,6 +54,8 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   className="w-11/12 h-14 px-3 py-2 border rounded-lg outline-none font-medium"
                   type="password"
                   placeholder="비밀번호"
+                  value={password}
+                  onChange={handleChangePassword}
                 />
               </div>
               <div className="flex justify-center">
