@@ -38,10 +38,15 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
 
   // 로그인 기능 구현
   const handleSubmit = () => {
-    handleLogin(email, password).then(() => {
-      setIsModalOpen(false);
-      setEmail("");
-      setPassword("");
+    handleLogin(email, password).then((res) => {
+      if (res === true) {
+        setIsModalOpen(false);
+        setEmail("");
+        setPassword("");
+      } else {
+        // UI 임시 구현
+        alert("로그인 실패, 이메일과 비밀번호를 확인해주세요");
+      }
     });
   };
 
