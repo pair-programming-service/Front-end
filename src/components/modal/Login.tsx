@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import kakaoSvg from "../assets/images/login/kakao.svg";
-import iconX from "../assets/images/login/iconX.svg";
+import kakaoSvg from "../../assets/images/login/kakao.svg";
+import iconX from "../../assets/images/login/iconX.svg";
 
 interface ModalProps {
   isOpen: boolean;
@@ -36,7 +36,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
             <div className="px-8 py-4">
               <div className="flex justify-center -mt-11">
                 <img
-                  src={require("../assets/images/logo/gothic.png")}
+                  src={require("../../assets/images/logo/gothic.png")}
                   className="h-44 "
                 />
               </div>

@@ -1,4 +1,4 @@
-import Login from "pages/Login";
+import Login from "components/modal/Login";
 import { useState } from "react";
 
 const Header = () => {
