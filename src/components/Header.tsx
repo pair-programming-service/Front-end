@@ -25,14 +25,6 @@ const Header = () => {
               <span>게시글</span>
             </a>
           </div>
-          {/* 임시 로그인 버튼입니다. 추후 디자인 적용 예정 */}
-          <button onClick={() => setIsModalOpen(true)}>
-            {" "}
-            <p className="flex px-4 py-4 text-[#000000] hover:text-[#769FCD]">
-              로그인(임시)
-            </p>
-          </button>
-          <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
           {/* <div>
             <a
               href="/pairpostdetail"
@@ -43,6 +35,15 @@ const Header = () => {
           </div> */}
         </div>
         {/* <div className="flex px-4 py-4">오른쪽</div> */}
+        <div className="absolute right-48">
+          <button
+            className="bg-cm-400 text-base text-white font-medium border rounded-lg px-1 py-0.5"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <p className="px-7 py-1.5 text-white">로그인</p>
+          </button>
+        </div>
+        <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </nav>
     </header>
   );
