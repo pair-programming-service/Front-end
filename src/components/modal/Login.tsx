@@ -12,6 +12,13 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // X 클릭시 이메일과 패스워드 초기화
+  const handleClickX = () => {
+    setIsModalOpen(false);
+    setEmail("");
+    setPassword("");
+  };
+
   // email 처리
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -47,7 +54,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
               <button
                 className="mt-5 mr-5"
                 type="button"
-                onClick={() => setIsModalOpen(false)}
+                onClick={handleClickX}
               >
                 <img src={iconX} className="w-8" />
               </button>
