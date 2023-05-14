@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import kakaoSvg from "../../assets/images/login/kakao.svg";
 import iconX from "../../assets/images/login/iconX.svg";
 import { handleLogin } from "apis/login";
+import { KAKAO_AUTH_URL } from "utils/OAuth";
 
 interface ModalProps {
   isOpen: boolean;
@@ -106,7 +107,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   className="bg-yellow-300 h-14 mt-7 text-lg text-black font-semibold w-11/12 px-3 py-2 border rounded-lg items-center"
                 >
                   <img src={kakaoSvg} className="w-6 h-7 absolute ml-4" />
-                  <span>카카오로 시작하기</span>
+                  <a href={KAKAO_AUTH_URL}>카카오로 시작하기</a>
                 </button>
               </div>
             </div>
