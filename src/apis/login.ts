@@ -8,7 +8,7 @@ enum Token {
 export const handleLogin = async (email: string, password: string) => {
   let returnValue;
   return await request
-    .post("https://codingmate.shop/api/member/login", {
+    .post("/member/login", {
       email: email,
       password: password,
     })
