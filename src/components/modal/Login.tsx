@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import kakaoSvg from "../../assets/images/login/kakao.svg";
 import iconX from "../../assets/images/login/iconX.svg";
 import { handleLogin } from "apis/login";
 import { KAKAO_AUTH_URL } from "utils/OAuth";
+import { useNavigate } from "react-router-dom";
+import useOnclickOutside from "hooks/useOnclickOutside";
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,6 +12,13 @@ interface ModalProps {
 }
 
 const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
+  const navigate = useNavigate();
+
+  const ref = useRef<HTMLDivElement>(null);
+  useOnclickOutside(ref, () => {
+    setIsModalOpen(false);
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,6 +46,11 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
     }
   };
 
+  const handleSignup = () => {
+    setIsModalOpen(false);
+    navigate("/signup");
+  };
+
   // 로그인 기능 구현
   const handleSubmit = () => {
     handleLogin(email, password).then((res) => {
@@ -55,7 +69,10 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
     <>
       {isOpen ? (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg overflow-hidden shadow-xl w-full sm:w-1/2 lg:w-1/3">
+          <div
+            ref={ref}
+            className="bg-white rounded-lg overflow-hidden shadow-xl w-full sm:w-1/2 lg:w-1/3"
+          >
             <div className="flex justify-end">
               <button
                 className="mt-5 mr-5"
@@ -94,17 +111,26 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
               </div>
               <div className="flex justify-center">
                 <button
-                  className="bg-cm-400 h-14 mt-3 text-lg text-white font-bold w-11/12 px-3 py-2 border rounded-lg"
+                  className="bg-cm-400 h-14 mt-3 text-lg text-white font-extralight w-11/12 px-3 py-2 border rounded-lg"
                   type="submit"
                   onClick={handleSubmit}
                 >
                   로그인
                 </button>
               </div>
+              <div className="flex justify-center">
+                <button
+                  className="h-14 mt-3 text-lg text-gray-500 font-extralight w-11/12 px-3 py-2 border-2 rounded-lg"
+                  type="submit"
+                  onClick={handleSignup}
+                >
+                  회원가입
+                </button>
+              </div>
               <div className="flex justify-center text-center mb-8">
                 <button
                   type="submit"
-                  className="bg-yellow-300 h-14 mt-7 text-lg text-black font-semibold w-11/12 px-3 py-2 border rounded-lg items-center"
+                  className="bg-yellow-300 h-14 mt-3 text-lg text-black font-extralight w-11/12 px-3 py-2 border rounded-lg items-center"
                 >
                   <img src={kakaoSvg} className="w-6 h-7 absolute ml-4" />
                   <a href={KAKAO_AUTH_URL}>카카오로 시작하기</a>
