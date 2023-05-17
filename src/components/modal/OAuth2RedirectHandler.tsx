@@ -15,12 +15,12 @@ const OAuth2RedirectHandler = () => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);
+      console.log("token", token);
+      console.log("refreshToken", refreshToken);
 
       navigate("/");
     } catch (error) {
       console.log(error);
-      // 카카오 로그인 에러시 UI 어떻게?
-      alert("에러");
     }
   };
 
