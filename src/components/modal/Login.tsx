@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import kakaoSvg from "../../assets/images/login/kakao.svg";
 import iconX from "../../assets/images/login/iconX.svg";
 import { handleLogin } from "apis/login";
@@ -14,20 +14,18 @@ interface ModalProps {
 const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const navigate = useNavigate();
 
-  const ref = useRef<HTMLDivElement>(null);
-  useOnclickOutside(ref, () => {
-    setIsModalOpen(false);
-  });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  // X 클릭시 이메일과 패스워드 초기화
-  const handleClickX = () => {
-    setIsModalOpen(false);
-    setEmail("");
-    setPassword("");
-  };
+  useEffect(() => {
+    // 모달이 닫힐 때마다 state값을 초기화해주는 useEffect 실행
+    return () => {
+      setEmail("");
+      setPassword("");
+      setError("");
+    };
+  }, [isOpen]);
 
   // email 처리
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +44,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
     }
   };
 
+  // 로그인 모달에서 회원가입 버튼 클릭시 회원가입 페이지로 이동
   const handleSignup = () => {
     setIsModalOpen(false);
     navigate("/signup");
@@ -54,16 +53,17 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   // 로그인 기능 구현
   const handleSubmit = () => {
     handleLogin(email, password).then((res) => {
-      if (res === true) {
-        setIsModalOpen(false);
-        setEmail("");
-        setPassword("");
-      } else {
-        // UI 임시 구현
-        alert("로그인 실패, 이메일과 비밀번호를 확인해주세요");
-      }
+      res === true
+        ? setIsModalOpen(false)
+        : setError("이메일 또는 비밀번호를 잘못 입력했습니다.");
     });
   };
+
+  // 모달창 외부 클릭시 모달 close 처리
+  const ref = useRef<HTMLDivElement>(null);
+  useOnclickOutside(ref, () => {
+    setIsModalOpen(false);
+  });
 
   return (
     <>
@@ -77,7 +77,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
               <button
                 className="mt-5 mr-5"
                 type="button"
-                onClick={handleClickX}
+                onClick={() => setIsModalOpen(false)}
               >
                 <img src={iconX} className="w-8" />
               </button>
@@ -109,6 +109,11 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                   onKeyDown={handleEnterPress}
                 />
               </div>
+              {error && (
+                <div className="flex justify-start text-red-500 font-extralight text-sm ml-4 mb-1 -mt-1">
+                  {error}
+                </div>
+              )}
               <div className="flex justify-center">
                 <button
                   className="bg-cm-400 h-14 mt-3 text-lg text-white font-extralight w-11/12 px-3 py-2 border rounded-lg"
