@@ -1,4 +1,5 @@
 import Layout from "components/layout/Layout";
+import OAuth2RedirectHandler from "components/modal/OAuth2RedirectHandler";
 import Main from "pages/Main";
 import MyPage from "pages/MyPage";
 import PairPostDetail from "pages/PairPostDetail";
@@ -36,6 +37,10 @@ const Router = () => {
     {
       path: "/mypage",
       element: <MyPage />,
+    },
+    {
+      path: "/oauth/callback/kakao",
+      element: <OAuth2RedirectHandler />,
     },
   ];
 

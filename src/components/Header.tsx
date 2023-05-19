@@ -1,4 +1,9 @@
+import Login from "components/modal/Login";
+import { useState } from "react";
+
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <header className="block w-full fixed z-10 h-16 text-base font-bold shadow-md bg-white">
       <nav className="max-w-[1180px] mx-auto flex justify-between items-center leading-6">
@@ -30,6 +35,15 @@ const Header = () => {
           </div> */}
         </div>
         {/* <div className="flex px-4 py-4">오른쪽</div> */}
+        <div className="absolute right-48">
+          <button
+            className="bg-cm-400 text-base text-white font-medium border rounded-lg px-1 py-0.5"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <p className="px-7 py-1.5 text-white">로그인</p>
+          </button>
+        </div>
+        <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </nav>
     </header>
   );
