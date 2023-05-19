@@ -1,16 +1,14 @@
 import axios from "axios";
 
-// const token = localStorage.getItem("token");
-// const refreshToken = localStorage.getItem("refreshToken");
-// console.log("token: ", token);
-// console.log("refreshToken: ", refreshToken);
+const token = localStorage.getItem("token");
+const refreshToken = localStorage.getItem("refreshToken");
 
 const request = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    // Authorization: token,
-    // "Refresh-Token": refreshToken,
+    Authorization: token,
+    refreshToken: refreshToken,
     withCredentials: true,
   },
 });
