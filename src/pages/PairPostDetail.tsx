@@ -44,7 +44,7 @@ const PairPostDetail = () => {
   };
 
   const handleEditButton = () => {
-    navigate(`/paripostedit/${id}`);
+    navigate(`/pairpostedit/${id}`);
   };
 
   return detailData ? (
