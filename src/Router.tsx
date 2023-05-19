@@ -1,5 +1,6 @@
 import Layout from "components/layout/Layout";
 import Main from "pages/Main";
+import MyPage from "pages/MyPage";
 import PairPostDetail from "pages/PairPostDetail";
 import PairPostEdit from "pages/PairPostEdit";
 import PairPostList from "pages/PairPostList";
@@ -31,6 +32,10 @@ const Router = () => {
     {
       path: "/signup",
       element: <SignUp />,
+    },
+    {
+      path: "/mypage",
+      element: <MyPage />,
     },
   ];
 
