@@ -19,6 +19,7 @@ const OAuth2RedirectHandler = () => {
       console.log("refreshToken", refreshToken);
 
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

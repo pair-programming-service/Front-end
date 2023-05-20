@@ -1,8 +1,26 @@
 import Login from "components/modal/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+
+  // 로그인 분기 처리
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    // const refreshToken = localStorage.getItem("refreshToken");
+
+    token !== "undefined" && token !== null
+      ? setIsLogin(true)
+      : setIsLogin(false);
+  }, []);
+
+  // 로그아웃 처리
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
+    window.location.reload();
+  };
 
   return (
     <header className="block w-full fixed z-10 h-16 text-base font-bold shadow-md bg-white">
@@ -35,14 +53,20 @@ const Header = () => {
           </div> */}
         </div>
         {/* <div className="flex px-4 py-4">오른쪽</div> */}
-        <div className="absolute right-48">
-          <button
-            className="bg-cm-400 text-base text-white font-medium border rounded-lg px-1 py-0.5"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <p className="px-7 py-1.5 text-white">로그인</p>
-          </button>
-        </div>
+        {isLogin ? (
+          <div>
+            <button onClick={handleLogout}>로그아웃</button>
+          </div>
+        ) : (
+          <div className="absolute right-48">
+            <button
+              className="bg-cm-400 text-base text-white font-medium border rounded-lg px-1 py-0.5"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <p className="px-7 py-1.5 text-white">로그인</p>
+            </button>
+          </div>
+        )}
         <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </nav>
     </header>
