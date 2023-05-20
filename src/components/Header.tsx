@@ -1,9 +1,12 @@
 import Login from "components/modal/Login";
 import { useEffect, useState } from "react";
+import SelectDropdown from "./selectDropdown/SelectDropdown";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // 로그인 분기 처리
   useEffect(() => {
@@ -20,6 +23,12 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     window.location.reload();
+  };
+
+  // option 버튼
+  const handleSelect = (option: string) => {
+    setSelectedOption(option);
+    setShowDropdown(false);
   };
 
   return (
@@ -54,8 +63,23 @@ const Header = () => {
         </div>
         {/* <div className="flex px-4 py-4">오른쪽</div> */}
         {isLogin ? (
-          <div>
-            <button onClick={handleLogout}>로그아웃</button>
+          <div className="relative">
+            <div className="relative inline-block ">
+              <button
+                className="w-10 h-10 mt-2 bg-gray-300 rounded-full flex items-center justify-center"
+                onClick={() => setShowDropdown((prev) => !prev)}
+              >
+                {/* 이미지 들어갈 예정 */}
+              </button>
+              {showDropdown && (
+                <SelectDropdown
+                  handleLogout={handleLogout}
+                  options={["마이페이지", "로그아웃"]}
+                  onSelect={handleSelect}
+                  closeDropdown={() => setShowDropdown(false)}
+                />
+              )}
+            </div>
           </div>
         ) : (
           <div className="absolute right-48">
