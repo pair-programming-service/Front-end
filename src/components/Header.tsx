@@ -1,6 +1,7 @@
 import Login from "components/modal/Login";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SelectDropdown from "./selectDropdown/SelectDropdown";
+import useOnclickOutside from "hooks/useOnclickOutside";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +31,12 @@ const Header = () => {
     setSelectedOption(option);
     setShowDropdown(false);
   };
+
+  // 옵션창 외부 클릭시 close 처리
+  const ref = useRef<HTMLDivElement>(null);
+  useOnclickOutside(ref, () => {
+    setShowDropdown(false);
+  });
 
   return (
     <header className="block w-full fixed z-10 h-16 text-base font-bold shadow-md bg-white">
@@ -63,7 +70,7 @@ const Header = () => {
         </div>
         {/* <div className="flex px-4 py-4">오른쪽</div> */}
         {isLogin ? (
-          <div className="relative">
+          <div ref={ref} className="relative">
             <div className="relative inline-block ">
               <button
                 className="w-10 h-10 mt-2 bg-gray-300 rounded-full flex items-center justify-center"
