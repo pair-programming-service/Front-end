@@ -2,23 +2,20 @@ import React from "react";
 
 interface SelectDropdownProps {
   options: string[];
-  onSelect: (option: string) => void;
-  closeDropdown: () => void;
   handleLogout: () => void;
+  closeDropdown: () => void;
 }
 
 const SelectDropdown = ({
   options,
-  onSelect,
-  closeDropdown,
   handleLogout,
+  closeDropdown,
 }: SelectDropdownProps) => {
   const handleOptionSelect = (option: string) => {
-    onSelect(option);
     closeDropdown();
 
+    if (option === "마이페이지") console.log("마이페이지"); // 마이페이지 라우팅 구현 예정
     if (option === "로그아웃") handleLogout();
-    if (option === "마이페이지") console.log("마이페이지"); // 라우팅 구현 예정
   };
 
   return (

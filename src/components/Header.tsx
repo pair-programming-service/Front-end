@@ -6,7 +6,6 @@ import useOnclickOutside from "hooks/useOnclickOutside";
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
   // 로그인 분기 처리
@@ -24,12 +23,6 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     window.location.reload();
-  };
-
-  // option 버튼
-  const handleSelect = (option: string) => {
-    setSelectedOption(option);
-    setShowDropdown(false);
   };
 
   // 옵션창 외부 클릭시 close 처리
@@ -82,7 +75,6 @@ const Header = () => {
                 <SelectDropdown
                   handleLogout={handleLogout}
                   options={["마이페이지", "로그아웃"]}
-                  onSelect={handleSelect}
                   closeDropdown={() => setShowDropdown(false)}
                 />
               )}
