@@ -27,8 +27,7 @@ const MyPage = () => {
         githubRef.current?.value || ""
       )
         .then((res) => {
-          console.log(res.data);
-          handleMyInfo();
+          if (res.data.success === true) handleMyInfo();
         })
         .catch((err) => {
           console.error(err);
