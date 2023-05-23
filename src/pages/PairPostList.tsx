@@ -9,9 +9,13 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Pagination from "react-js-pagination";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { languageFilter } from "state/atoms/filterOptionAtom";
+import {
+  languageFilter,
+  programTypeFilter,
+} from "state/atoms/filterOptionAtom";
 import { languageList } from "types/language.type";
 import { PairPost } from "types/post.type";
+import { programmingList } from "types/programming.type";
 import { ButtonStyle } from "types/styles.type";
 
 const PairPostList = () => {
@@ -20,6 +24,7 @@ const PairPostList = () => {
   const [postList, setPostList] = useState([] as PairPost[]);
   const [totalPage, setTotalPage] = useState(1);
   const lanFilter = useRecoilValue(languageFilter);
+  const programFilter = useRecoilValue(programTypeFilter);
 
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState("");
@@ -34,13 +39,17 @@ const PairPostList = () => {
       }
     });
     setSearchInput(searchValue || "");
-    getPairPostList(nowPage, 20, searchValue || "", filterdLanNames).then(
-      (res) => {
-        setPostList(res.data.data);
-        setTotalPage(res.data.page);
-      }
-    );
-  }, [searchValue, nowPage, ...lanFilter]);
+    getPairPostList(
+      nowPage,
+      20,
+      searchValue || "",
+      filterdLanNames,
+      programmingList.find((prog) => prog.id === programFilter)?.name
+    ).then((res) => {
+      setPostList(res.data.data);
+      setTotalPage(res.data.page);
+    });
+  }, [searchValue, nowPage, ...lanFilter, programFilter]);
 
   const handleSearch = () => {
     navigate(`/pairpostlist?search=${searchInput}&page=1`);

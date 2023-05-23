@@ -1,15 +1,22 @@
+import { signup } from "apis/register";
 import Input from "components/common/Input";
 import SquareButton from "components/common/SquareButton";
 import Warning from "components/signup/Warning";
 import { useSignupValid } from "hooks/useSignupValid";
 import { useState } from "react";
-import googleSvg from "../assets/images/register/google.svg";
+import { useNavigate } from "react-router-dom";
+import { SignupData } from "types/signup.type";
+import { KAKAO_AUTH_URL } from "utils/OAuth";
+import kakaoSvg from "../assets/images/login/kakao.svg";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const [isUniqueEmail, setIsUniqueEmail] = useState(true);
+  const [isUniqueNickname, setIsUniqueNickname] = useState(true);
 
   const {
     isValidEmail,
@@ -21,7 +28,26 @@ const SignUp = () => {
 
   const handleSignup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log("signup");
+    const data: SignupData = {
+      email,
+      nickname,
+      password,
+    };
+    signup(data)
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        if (err.response.data.error.code === "DUPLICATED_NICKNAME") {
+          setIsUniqueNickname(true);
+          setIsUniqueEmail(false);
+        } else if (err.response.data.error.code === "ALREADY_NICKNAME") {
+          setIsUniqueNickname(false);
+          setIsUniqueEmail(true);
+        }
+      });
   };
 
   return (
@@ -40,6 +66,7 @@ const SignUp = () => {
             isValid={isValidEmail}
             text="이메일 형식으로 입력해 주세요"
           />
+          <Warning isValid={isUniqueEmail} text="중복된 이메일입니다" />
           <label className="mt-3">닉네임</label>
           <Input
             value={nickname}
@@ -51,6 +78,7 @@ const SignUp = () => {
             isValid={isValidNickname}
             text="영문, 한글, 숫자를 사용해 2자 이상 10자 이하로 입력해 주세요"
           />
+          <Warning isValid={isUniqueNickname} text="중복된 닉네임입니다" />
           <label className="mt-3">비밀번호</label>
           <Input
             value={password}
@@ -81,13 +109,13 @@ const SignUp = () => {
               disabled={!isValidForm}
             />
             <SquareButton
-              text={"구글로 간편 로그인하기"}
+              text={"카카오로 간편 로그인하기"}
               handleClick={(e) => {
                 e.preventDefault();
-                console.log("google");
+                location.assign(KAKAO_AUTH_URL);
               }}
               style={{ isWhite: true }}
-              icon={<img className="w-6 h-6 absolute left-4" src={googleSvg} />}
+              icon={<img className="w-6 h-6 absolute left-4" src={kakaoSvg} />}
             />
           </div>
         </form>

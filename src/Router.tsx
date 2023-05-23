@@ -1,11 +1,12 @@
 import Layout from "components/layout/Layout";
+import OAuth2RedirectHandler from "components/modal/OAuth2RedirectHandler";
 import Main from "pages/Main";
+import MyPage from "pages/MyPage";
 import PairPostDetail from "pages/PairPostDetail";
 import PairPostEdit from "pages/PairPostEdit";
 import PairPostList from "pages/PairPostList";
 import SignUp from "pages/SignUp";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import OAuth2RedirectHandler from "components/modal/OAuth2RedirectHandler";
 
 const Router = () => {
   const routerData = [
@@ -32,6 +33,10 @@ const Router = () => {
     {
       path: "/signup",
       element: <SignUp />,
+    },
+    {
+      path: "/mypage",
+      element: <MyPage />,
     },
     {
       path: "/oauth/callback/kakao",
