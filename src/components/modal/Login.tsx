@@ -54,7 +54,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const handleSubmit = () => {
     handleLogin(email, password).then((res) => {
       res === true
-        ? setIsModalOpen(false)
+        ? (setIsModalOpen(false), window.location.reload())
         : setError("이메일 또는 비밀번호를 잘못 입력했습니다.");
     });
   };

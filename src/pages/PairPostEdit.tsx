@@ -22,6 +22,7 @@ import { programmingList } from "types/programming.type";
 import { isValidPost } from "utils/isValidPost";
 
 const PairPostEdit = () => {
+  const token = localStorage.getItem("token");
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useRecoilState(startDateSelect);
   const [programType, setProgramType] = useRecoilState(programTypeSelect);
@@ -36,6 +37,11 @@ const PairPostEdit = () => {
 
   const navigate = useNavigate();
   const editorRef = useRef<Editor>(null);
+
+  // 로그인하지 않은 유저가 /pairpostedit 라우터로 이동할시 '/'로 리다이렉션
+  useEffect(() => {
+    if (token === "undefined" || token === null) navigate("/");
+  }, []);
 
   useEffect(() => {
     if (id) {
