@@ -1,17 +1,24 @@
+import { signup } from "apis/register";
 import Input from "components/common/Input";
 import SquareButton from "components/common/SquareButton";
 import Warning from "components/signup/Warning";
 import { useSignupValid } from "hooks/useSignupValid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SignupData } from "types/signup.type";
 import googleSvg from "../assets/images/register/google.svg";
 
 const SignUp = () => {
-  // const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const [isUniqueEmail, setIsUniqueEmail] = useState(true);
+  const [isUniqueNickname, setIsUniqueNickname] = useState(true);
 
   const {
     isValidEmail,
@@ -23,13 +30,32 @@ const SignUp = () => {
 
   const handleSignup = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log("signup");
+    const data: SignupData = {
+      email,
+      nickname,
+      password,
+    };
+    signup(data)
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        if (err.response.data.error.code === "DUPLICATED_NICKNAME") {
+          setIsUniqueNickname(true);
+          setIsUniqueEmail(false);
+        } else if (err.response.data.error.code === "ALREADY_NICKNAME") {
+          setIsUniqueNickname(false);
+          setIsUniqueEmail(true);
+        }
+      });
   };
 
   // 로그인한 유저가 /signup 라우터로 이동할시 '/'로 리다이렉션
-  // useEffect(() => {
-  //   if (token !== "undefined" && token !== null) navigate("/");
-  // }, []);
+  useEffect(() => {
+    if (token !== "undefined" && token !== null) navigate("/");
+  }, []);
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
@@ -47,6 +73,7 @@ const SignUp = () => {
             isValid={isValidEmail}
             text="이메일 형식으로 입력해 주세요"
           />
+          <Warning isValid={isUniqueEmail} text="중복된 이메일입니다" />
           <label className="mt-3">닉네임</label>
           <Input
             value={nickname}
@@ -58,6 +85,7 @@ const SignUp = () => {
             isValid={isValidNickname}
             text="영문, 한글, 숫자를 사용해 2자 이상 10자 이하로 입력해 주세요"
           />
+          <Warning isValid={isUniqueNickname} text="중복된 닉네임입니다" />
           <label className="mt-3">비밀번호</label>
           <Input
             value={password}
