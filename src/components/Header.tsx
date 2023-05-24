@@ -2,11 +2,14 @@ import Login from "components/modal/Login";
 import { useEffect, useRef, useState } from "react";
 import SelectDropdown from "./selectDropdown/SelectDropdown";
 import useOnclickOutside from "hooks/useOnclickOutside";
+import unprofile from "../assets/images/login/unactive-mypage.svg";
+import profile from "../assets/images/login/active-mypage.svg";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // 로그인 분기 처리
   useEffect(() => {
@@ -66,10 +69,12 @@ const Header = () => {
           <div ref={ref} className="relative">
             <div className="relative inline-block ">
               <button
-                className="w-10 h-10 mt-2 bg-gray-300 rounded-full flex items-center justify-center"
+                className="w-10 h-10 mt-2 rounded-full flex items-center justify-center"
                 onClick={() => setShowDropdown((prev) => !prev)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
-                {/* 이미지 들어갈 예정 */}
+                <img src={isHovered || showDropdown ? profile : unprofile} />
               </button>
               {showDropdown && (
                 <SelectDropdown

@@ -19,12 +19,16 @@ const SelectDropdown = ({
   };
 
   return (
-    <div className="absolute mt-2 bg-white rounded-md shadow-lg w-40 text-center -right-2">
+    <div className="absolute mt-2 bg-white rounded-md shadow-lg w-40 text-left -right-2">
       <ul className="py-1">
+        <div className="flex flex-row items-center px-3 mb-4">
+          <div className="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+          <span>닉네임</span>
+        </div>
         {options.map((option) => (
           <li
             key={option}
-            className="px-4 py-2 text-base font-semibold cursor-pointer"
+            className="px-6 py-2 text-base font-semibold cursor-pointer"
             onClick={() => handleOptionSelect(option)}
           >
             {option}
