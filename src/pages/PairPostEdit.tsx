@@ -40,7 +40,7 @@ const PairPostEdit = () => {
 
   // 로그인하지 않은 유저가 /pairpostedit 라우터로 이동할시 '/'로 리다이렉션
   useEffect(() => {
-    if (token === null) navigate("/");
+    if (token === "undefined" || token === null) navigate("/");
   }, []);
 
   useEffect(() => {

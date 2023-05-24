@@ -1,5 +1,6 @@
 import DropdownOption from "components/common/DropdownOption";
 import SquareButton from "components/common/SquareButton";
+import Login from "components/modal/Login";
 import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { RiCheckboxCircleFill, RiCheckboxCircleLine } from "react-icons/ri";
@@ -13,24 +14,37 @@ import { optionList } from "types/filter.type";
 import { languageList } from "types/language.type";
 
 const OptionFilter = () => {
+  const token = localStorage.getItem("token");
+
   const setLanFilteredArr = useSetRecoilState(languageFilter);
   const setProgramFilteredId = useSetRecoilState(programTypeFilter);
+
   const [openedOptionNum, setOpenedOptionNum] = useState(0);
   const [isRecruiting, setIsRecruiting] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
   const handleReset = () => {
     setLanFilteredArr(new Array(languageList.length).fill(false));
     setProgramFilteredId(-1);
   };
+
   const handleIsRecruiting = () => {
     setIsRecruiting(!isRecruiting);
   };
+
+  // 로그인하지 않은 유저가 글 작성하기 클릭시 login modal open
   const handleNavigateEdit = () => {
-    navigate("/pairpostedit");
+    token === "undefined" || token === null
+      ? setIsModalOpen(true)
+      : navigate("/pairpostedit");
   };
+
   useEffect(() => {
     setOpenedOptionNum(0);
   }, []);
+
   return (
     <div className="mb-4">
       <div className="flex flex-wrap mb-4">
@@ -81,6 +95,7 @@ const OptionFilter = () => {
           style={{ isWhite: false }}
         />
       </div>
+      <Login isOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };
