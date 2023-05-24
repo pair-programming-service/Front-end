@@ -22,7 +22,9 @@ const SelectDropdown = ({
     <div className="absolute mt-2 bg-white rounded-md shadow-lg w-40 text-left -right-2">
       <ul className="py-1">
         <div className="flex flex-row items-center px-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+          {/* 추후 이미지 들어갈 서클  */}
+          <div className="w-10 h-10 rounded-full bg-gray-300 mr-3" />
+          {/* 임시 닉네임 */}
           <span>닉네임</span>
         </div>
         {options.map((option) => (
