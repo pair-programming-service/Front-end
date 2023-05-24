@@ -2,10 +2,15 @@ import Input from "components/common/Input";
 import SquareButton from "components/common/SquareButton";
 import Warning from "components/signup/Warning";
 import { useSignupValid } from "hooks/useSignupValid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import googleSvg from "../assets/images/register/google.svg";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +28,11 @@ const SignUp = () => {
     e.preventDefault();
     console.log("signup");
   };
+
+  // 로그인한 유저가 /signup 라우터로 이동할시 '/'로 리다이렉션
+  useEffect(() => {
+    if (token !== "undefined" && token !== null) navigate("/");
+  }, []);
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
