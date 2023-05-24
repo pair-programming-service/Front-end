@@ -6,7 +6,8 @@ import { useSignupValid } from "hooks/useSignupValid";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignupData } from "types/signup.type";
-import googleSvg from "../assets/images/register/google.svg";
+import { KAKAO_AUTH_URL } from "utils/OAuth";
+import kakaoSvg from "../assets/images/login/kakao.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -116,13 +117,13 @@ const SignUp = () => {
               disabled={!isValidForm}
             />
             <SquareButton
-              text={"구글로 간편 로그인하기"}
+              text={"카카오로 간편 로그인하기"}
               handleClick={(e) => {
                 e.preventDefault();
-                console.log("google");
+                location.assign(KAKAO_AUTH_URL);
               }}
               style={{ isWhite: true }}
-              icon={<img className="w-6 h-6 absolute left-4" src={googleSvg} />}
+              icon={<img className="w-6 h-6 absolute left-4" src={kakaoSvg} />}
             />
           </div>
         </form>
