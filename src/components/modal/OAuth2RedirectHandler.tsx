@@ -18,8 +18,7 @@ const OAuth2RedirectHandler = () => {
       console.log("token", token);
       console.log("refreshToken", refreshToken);
 
-      navigate("/");
-      window.location.reload();
+      navigate(-1); // 카카오로그인 성공시 사용자가 로그인 시도한 페이지로 navigate 설정
     } catch (error) {
       console.log(error);
     }

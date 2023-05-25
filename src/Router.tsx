@@ -36,7 +36,7 @@ const Router = () => {
     {
       path: "/pairpostdetail/:id",
       element: <PairPostDetail />,
-      auth: "AUTH",
+      auth: "COMMON",
     },
     {
       path: "/mypage",
