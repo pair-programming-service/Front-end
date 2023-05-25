@@ -68,9 +68,7 @@ const Router = () => {
             ) : data.auth === "AUTH" ? (
               <Route
                 path={data.path}
-                element={
-                  isAuth ? data.element : <Navigate to="/signup" replace />
-                }
+                element={isAuth ? data.element : <Navigate to="/" replace />}
               />
             ) : (
               <Route path={data.path} element={data.element} />
