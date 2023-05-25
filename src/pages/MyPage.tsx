@@ -7,21 +7,20 @@ import Nickname from "components/mypage/Nickname";
 import ProfileImage from "components/mypage/ProfileImage";
 import PostList from "components/pairPostList/PostList";
 import { useEffect, useRef, useState } from "react";
-import { MyPageInfo } from "types/mypage.type";
-import { PairPost } from "types/post.type";
+import { ProfileInfo } from "types/profile.type";
 
 const MyPage = () => {
   const nicknameRef = useRef<HTMLInputElement>(null);
   const githubRef = useRef<HTMLInputElement>(null);
 
-  const [myInfo, setMyInfo] = useState<MyPageInfo>({
+  const [myInfo, setMyInfo] = useState<ProfileInfo>({
     nickname: "",
     profileImage: null,
     githubLink: "",
+    postList: [],
   });
   const [isEditing, setIsEditing] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [myPostList, setMyPostList] = useState<PairPost[]>([]);
   const [isValidNickname, setIsValidNickname] = useState(true);
 
   const handleEdit = () => {
@@ -61,9 +60,8 @@ const MyPage = () => {
           nickname: res.data.data.nickname,
           profileImage: res.data.data.profileImage,
           githubLink: res.data.data.githubLink,
+          postList: [], // TODO: 나의 게시글 목록
         });
-        setMyPostList([]);
-        // setMyPostList(res.data.data.boardList); // TODO: 나의 게시글 목록
       }
     });
   };
@@ -140,7 +138,7 @@ const MyPage = () => {
       {isEditing || (
         <div>
           <div className="text-2xl font-bold mb-2">내가 쓴 글</div>
-          <PostList postList={myPostList} />
+          <PostList postList={myInfo.postList} />
         </div>
       )}
     </div>
