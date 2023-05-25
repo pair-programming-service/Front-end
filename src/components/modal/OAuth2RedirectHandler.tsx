@@ -5,14 +5,7 @@ import React, { useEffect, useState } from "react";
 const OAuth2RedirectHandler = () => {
   const [code, setCode] = useState<string | null>(null);
 
-  const token = localStorage.getItem("token");
-
   const navigate = useNavigate();
-
-  // 로그인한 유저가 /oauth/callback/kakao 라우터로 이동할시 '/'로 리다이렉션
-  useEffect(() => {
-    if (token !== "undefined" && token !== null) navigate("/");
-  }, []);
 
   const kakaoLogin = async (code: string | null) => {
     try {

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface SelectDropdownProps {
   options: string[];
@@ -11,10 +12,12 @@ const SelectDropdown = ({
   handleLogout,
   closeDropdown,
 }: SelectDropdownProps) => {
+  const navigate = useNavigate();
+
   const handleOptionSelect = (option: string) => {
     closeDropdown();
 
-    if (option === "마이페이지") console.log("마이페이지"); // 마이페이지 라우팅 구현 예정
+    if (option === "마이페이지") navigate("/mypage");
     if (option === "로그아웃") handleLogout();
   };
 
