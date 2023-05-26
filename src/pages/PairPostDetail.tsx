@@ -34,7 +34,9 @@ const PairPostDetail = () => {
 
   const handleDeleteButton = () => {
     if (detailData) {
-      deletePairPost(detailData.id).then((res) => console.log(res));
+      deletePairPost(detailData.id)
+        .then(() => navigate("/PairPostList"))
+        .catch((err) => console.log(err));
     }
   };
 
