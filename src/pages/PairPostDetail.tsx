@@ -1,4 +1,4 @@
-import { getPairPost } from "apis/pairpost";
+import { deletePairPost, getPairPost } from "apis/pairpost";
 import MarkdownView from "components/MarkdownView";
 import LanguageIcon from "components/common/LanguageIcon";
 import SquareButton from "components/common/SquareButton";
@@ -8,22 +8,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 import { useNavigate, useParams } from "react-router-dom";
 import { ideList } from "types/ide.type";
 import { languageList } from "types/language.type";
-
-type DetailData = {
-  id: number;
-  title: string;
-  content: string;
-  ide: string;
-  runningTime: string;
-  proceed: string;
-  category: string;
-  runningDate: string;
-  language: string[];
-  createdAt: string;
-  updatedAt: string;
-  status: false;
-  viewCount: number;
-};
+import { DetailData } from "types/postDetail.type";
 
 const PairPostDetail = () => {
   const navigate = useNavigate();
@@ -45,6 +30,12 @@ const PairPostDetail = () => {
 
   const handleEditButton = () => {
     navigate(`/pairpostedit/${id}`);
+  };
+
+  const handleDeleteButton = () => {
+    if (detailData) {
+      deletePairPost(detailData.id).then((res) => console.log(res));
+    }
   };
 
   return detailData ? (
@@ -74,11 +65,18 @@ const PairPostDetail = () => {
                 handleClick={handleEditButton}
                 style={{ isWhite: false }}
               />
+              <SquareButton
+                text="삭제하기"
+                handleClick={handleDeleteButton}
+                style={{ isWhite: false }}
+              />
             </div>
           </div>
           <div className="py-2 flex justify-between">
             <div>
-              <span className="font-semibold">작성자</span>
+              <span className="font-semibold">
+                작성자 {detailData.nickname}
+              </span>
               <span className=" pl-2">{detailData?.createdAt}</span>
             </div>
             <span>조회수 {detailData?.viewCount}</span>
