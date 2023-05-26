@@ -1,7 +1,7 @@
 import { signup } from "apis/register";
 import Input from "components/common/Input";
 import SquareButton from "components/common/SquareButton";
-import Warning from "components/signup/Warning";
+import Warning from "components/common/Warning";
 import { useSignupValid } from "hooks/useSignupValid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

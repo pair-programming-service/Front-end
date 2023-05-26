@@ -5,8 +5,9 @@ import MyPage from "pages/MyPage";
 import PairPostDetail from "pages/PairPostDetail";
 import PairPostEdit from "pages/PairPostEdit";
 import PairPostList from "pages/PairPostList";
+import Profile from "pages/Profile";
 import SignUp from "pages/SignUp";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   const token = localStorage.getItem("token");
@@ -42,6 +43,11 @@ const Router = () => {
       path: "/mypage",
       element: <MyPage />,
       auth: "AUTH",
+    },
+    {
+      path: "/profile/:nickname",
+      element: <Profile />,
+      auth: "COMMON",
     },
     {
       path: "/signup",

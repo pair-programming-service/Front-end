@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+<svg width="528" height="528" viewBox="0 0 528 528" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_322_13589)">
+<rect width="528" height="528" rx="40" fill="white"/>
+<rect width="528" height="528" fill="#DDDDDD"/>
+<circle cx="264" cy="244" r="94" fill="#F3F3F3"/>
+<mask id="mask0_322_13589" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="96" y="368" width="336" height="336">
+<circle cx="264" cy="536" r="168" fill="#F3F3F3"/>
+</mask>
+<g mask="url(#mask0_322_13589)">
+<rect x="-9" y="7" width="528" height="528" fill="#F3F3F3"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_322_13589">
+<rect width="528" height="528" rx="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>

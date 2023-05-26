@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { languageList } from "types/language.type";
 import { PairPost } from "types/post.type";
+import { getPrettyDateAgo } from "utils/getPrettyDateAgo";
 import LanguageIcon from "./LanguageIcon";
 import Tag from "./Tag";
 
@@ -36,8 +37,18 @@ const PostCard = ({ post }: { post: PairPost }) => {
       </div>
       <h1 className="font-bold mb-3">{post.title}</h1>
       <div className="flex items-center w-full justify-between">
-        <div className="text-sm">{post.createdAt?.slice(0, 10)}</div>
-        <Tag text={post.category} />
+        <div className="flex gap-1 items-center">
+          <div className="text-sm">{getPrettyDateAgo(post.createdAt)}</div>
+          <span>·</span>
+          <div className="text-sm">{post.nickname}</div>
+        </div>
+        <div className="flex gap-2 items-center">
+          <Tag
+            text={post.status ? "모집 중" : "모집 완료"}
+            status={post.status}
+          />
+          <Tag text={post.category} />
+        </div>
       </div>
     </div>
   );
