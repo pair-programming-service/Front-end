@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userState } from "state/atoms/userAtom";
 
 interface SelectDropdownProps {
   options: string[];
@@ -14,6 +16,8 @@ const SelectDropdown = ({
 }: SelectDropdownProps) => {
   const navigate = useNavigate();
 
+  const userData = useRecoilValue(userState);
+
   const handleOptionSelect = (option: string) => {
     closeDropdown();
 
@@ -25,10 +29,16 @@ const SelectDropdown = ({
     <div className="absolute mt-2 bg-white rounded-md shadow-lg w-40 text-left -right-2">
       <ul className="py-1">
         <div className="flex flex-row items-center px-3 mb-4">
-          {/* 추후 이미지 들어갈 서클  */}
-          <div className="w-10 h-10 rounded-full bg-gray-300 mr-3" />
-          {/* 임시 닉네임 */}
-          <span>닉네임</span>
+          {userData?.profileImage ? (
+            <img
+              src={userData.profileImage}
+              className="w-10 h-10 rounded-full mr-3"
+            />
+          ) : (
+            // 유저 프로필이 없을 경우 = default 프로필로 설정(임시)
+            <div className="w-10 h-10 rounded-full bg-gray-300 mr-3" />
+          )}
+          <span>{userData?.nickname}</span>
         </div>
         {options.map((option) => (
           <li
