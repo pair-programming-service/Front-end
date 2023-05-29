@@ -18,6 +18,5 @@ export const handleLogin = async (email: string, password: string) => {
 
       returnValue = response.data.data;
       return returnValue;
-    })
-    .catch((err) => console.log(err));
+    });
 };

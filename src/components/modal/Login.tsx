@@ -120,7 +120,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
                 />
               </div>
               {error && (
-                <div className="flex justify-start text-red-500 font-extralight text-sm ml-4 mb-1 -mt-1">
+                <div className="flex justify-start text-red-400 font-semibold text-sm ml-5 mb-1 -mt-1">
                   {error}
                 </div>
               )}
