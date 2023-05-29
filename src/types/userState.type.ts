@@ -5,9 +5,10 @@ export interface Board {
 }
 
 export interface UserState {
-  boardList: Board[] | null;
+  boardList?: Board[] | null;
+  loginSuccess?: boolean;
   createdAt: string;
-  email: string;
+  email?: string;
   githubLink: string | null;
   id: number;
   nickname: string;
