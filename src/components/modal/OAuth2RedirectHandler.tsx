@@ -1,22 +1,28 @@
 import request from "apis/base";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { userState } from "state/atoms/userAtom";
 
 const OAuth2RedirectHandler = () => {
   const [code, setCode] = useState<string | null>(null);
 
+  type Token = string;
+
   const navigate = useNavigate();
+  const setUserData = useSetRecoilState(userState);
 
   const kakaoLogin = async (code: string | null) => {
     try {
       const response = await request.get(`/oauth/token?code=${code}`);
-      const token = response.headers.authorization;
-      const refreshToken = response.headers.refreshtoken;
+      const token = response.headers.authorization as Token;
+      const refreshToken = response.headers.refreshtoken as Token;
+      const nickname = response.data.data.nickname.split(" ")[0];
+
+      setUserData({ ...response.data.data, nickname: nickname });
 
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);
-      console.log("token", token);
-      console.log("refreshToken", refreshToken);
 
       navigate(-1); // 카카오로그인 성공시 사용자가 로그인 시도한 페이지로 navigate 설정
     } catch (error) {
