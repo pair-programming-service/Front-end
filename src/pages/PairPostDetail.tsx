@@ -6,14 +6,18 @@ import Tag from "components/common/Tag";
 import { useCallback, useEffect, useState } from "react";
 import { HiArrowLeft } from "react-icons/hi2";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userState } from "state/atoms/userAtom";
 import { ideList } from "types/ide.type";
 import { languageList } from "types/language.type";
 import { DetailData } from "types/postDetail.type";
 
 const PairPostDetail = () => {
   const navigate = useNavigate();
-  const [detailData, setDetailData] = useState<DetailData>();
   const id = useParams().id || "";
+  const userNickName = useRecoilValue(userState)?.nickname;
+
+  const [detailData, setDetailData] = useState<DetailData>();
 
   const detailAPI = useCallback(async () => {
     const response = await getPairPost(+id);
@@ -53,7 +57,7 @@ const PairPostDetail = () => {
       <div className="box-border w-full relative -top-9">
         <section className="w-full">
           <div className="flex justify-between">
-            <div className="w-lg flex">
+            <div className="w-lg flex items-center">
               <h1 className="pr-2 inline font-bold text-2xl leading-normal">
                 {detailData.title}
               </h1>
@@ -61,25 +65,27 @@ const PairPostDetail = () => {
                 <Tag text={detailData.status ? "모집중" : "모집완료"} />
               </div>
             </div>
-            <div>
-              <SquareButton
-                text="수정하기"
-                handleClick={handleEditButton}
-                style={{ isWhite: false }}
-              />
-              <SquareButton
-                text="삭제하기"
-                handleClick={handleDeleteButton}
-                style={{ isWhite: false }}
-              />
-            </div>
+            {userNickName === detailData.nickname && (
+              <div className="flex gap-4">
+                <SquareButton
+                  text="수정하기"
+                  handleClick={handleEditButton}
+                  style={{ isWhite: false }}
+                />
+                <SquareButton
+                  text="삭제하기"
+                  handleClick={handleDeleteButton}
+                  style={{ isWhite: false }}
+                />
+              </div>
+            )}
           </div>
           <div className="py-2 flex justify-between">
             <div>
-              <span className="font-semibold">
-                작성자 {detailData.nickname}
+              <span className="font-semibold">{detailData.nickname}</span>
+              <span className=" pl-2">
+                {detailData?.createdAt.split(" ")[0]}
               </span>
-              <span className=" pl-2">{detailData?.createdAt}</span>
             </div>
             <span>조회수 {detailData?.viewCount}</span>
           </div>
