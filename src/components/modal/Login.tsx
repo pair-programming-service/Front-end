@@ -5,6 +5,9 @@ import { handleLogin } from "apis/login";
 import { KAKAO_AUTH_URL } from "utils/OAuth";
 import { useNavigate } from "react-router-dom";
 import useOnclickOutside from "hooks/useOnclickOutside";
+import { useSetRecoilState } from "recoil";
+import { userState } from "state/atoms/userAtom";
+import { UserState } from "types/userState.type";
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,6 +20,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const setUser = useSetRecoilState(userState);
 
   useEffect(() => {
     // 모달이 닫힐 때마다 state값을 초기화해주는 useEffect 실행
@@ -50,13 +54,19 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
     navigate("/signup");
   };
 
+  const handleSuccess = (data: UserState) => {
+    setIsModalOpen(false);
+    setUser(data);
+    window.location.reload();
+  };
+
   // 로그인 기능 구현
   const handleSubmit = () => {
-    handleLogin(email, password).then((res) => {
-      res === true
-        ? (setIsModalOpen(false), window.location.reload())
-        : setError("이메일 또는 비밀번호를 잘못 입력했습니다.");
-    });
+    handleLogin(email, password)
+      .then((res) => {
+        handleSuccess(res);
+      })
+      .catch(() => setError("이메일 또는 비밀번호를 잘못 입력했습니다."));
   };
 
   // 모달창 외부 클릭시 모달 close 처리
