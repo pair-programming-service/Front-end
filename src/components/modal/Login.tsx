@@ -20,7 +20,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const setUser = useSetRecoilState(userState);
+  const setUserData = useSetRecoilState(userState);
 
   useEffect(() => {
     // 모달이 닫힐 때마다 state값을 초기화해주는 useEffect 실행
@@ -56,7 +56,7 @@ const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
 
   const handleSuccess = (data: UserState) => {
     setIsModalOpen(false);
-    setUser(data);
+    setUserData(data);
     window.location.reload();
   };
 
