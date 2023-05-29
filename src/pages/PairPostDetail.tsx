@@ -21,16 +21,15 @@ const PairPostDetail = () => {
 
   const detailAPI = useCallback(async () => {
     const response = await getPairPost(+id);
-    setDetailData(response.data.data);
+
+    // 백엔드에서 수정 가능하다면 삭제
+    const nickname = response.data.data.nickname.split(" ")[0];
+    setDetailData({ ...response.data.data, nickname: nickname });
   }, [id]);
 
   useEffect(() => {
     detailAPI();
   }, [detailAPI]);
-
-  const handleBackButton = () => {
-    navigate(-1);
-  };
 
   const handleEditButton = () => {
     navigate(`/pairpostedit/${id}`);
@@ -49,7 +48,7 @@ const PairPostDetail = () => {
       <div className="relative -left-20 pl-4">
         <button
           className="w-10 h-10 rounded-lg border bg-white flex box-border justify-center items-center"
-          onClick={handleBackButton}
+          onClick={() => navigate(-1)}
         >
           <HiArrowLeft className="w-6 h-6" />
         </button>
@@ -92,7 +91,7 @@ const PairPostDetail = () => {
           <hr />
         </section>
         <section>
-          <div className="py-4 grid gap-4 grid-cols-2 grid-rows-3 text-sm ">
+          <div className="py-4 grid gap-4 grid-cols-2 grid-rows-3 text-sm">
             <div className="flex">
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 프로그래밍 유형
