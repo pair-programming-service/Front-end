@@ -18,7 +18,6 @@ const OAuth2RedirectHandler = () => {
       const token = response.headers.authorization as Token;
       const refreshToken = response.headers.refreshtoken as Token;
 
-      // 백엔드에서 수정 가능하다면 삭제
       setUserData(response.data.data);
 
       localStorage.setItem("token", token);
