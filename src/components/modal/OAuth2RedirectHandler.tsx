@@ -19,8 +19,7 @@ const OAuth2RedirectHandler = () => {
       const refreshToken = response.headers.refreshtoken as Token;
 
       // 백엔드에서 수정 가능하다면 삭제
-      const nickname = response.data.data.nickname.split(" ")[0];
-      setUserData({ ...response.data.data, nickname: nickname });
+      setUserData(response.data.data);
 
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);

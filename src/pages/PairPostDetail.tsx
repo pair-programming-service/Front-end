@@ -23,8 +23,7 @@ const PairPostDetail = () => {
     const response = await getPairPost(+id);
 
     // 백엔드에서 수정 가능하다면 삭제
-    const nickname = response.data.data.nickname.split(" ")[0];
-    setDetailData({ ...response.data.data, nickname: nickname });
+    setDetailData(response.data.data);
   }, [id]);
 
   useEffect(() => {
