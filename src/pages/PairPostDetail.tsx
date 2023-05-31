@@ -42,6 +42,12 @@ const PairPostDetail = () => {
     }
   };
 
+  const handleProfileClick = () => {
+    detailData?.nickname === userNickName
+      ? navigate("/mypage")
+      : navigate(`/profile/${detailData?.nickname}`);
+  };
+
   return detailData ? (
     <main className="px-20 pt-20 flex flex-col justify-center w-full">
       <div className="relative -left-20 pl-4">
@@ -80,7 +86,12 @@ const PairPostDetail = () => {
           </div>
           <div className="py-2 flex justify-between">
             <div>
-              <span className="font-semibold">{detailData.nickname}</span>
+              <span
+                onClick={handleProfileClick}
+                className="font-semibold cursor-pointer"
+              >
+                {detailData.nickname}
+              </span>
               <span className=" pl-2">
                 {detailData?.createdAt.split(" ")[0]}
               </span>
