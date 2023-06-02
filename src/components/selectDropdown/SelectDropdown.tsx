@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "state/atoms/userAtom";
+import defaultUser from "../../assets/images/register/profile.svg";
 
 interface SelectDropdownProps {
   options: string[];
@@ -35,8 +36,10 @@ const SelectDropdown = ({
               className="w-10 h-10 rounded-full mr-3"
             />
           ) : (
-            // 유저 프로필이 없을 경우 = default 프로필로 설정(임시)
-            <div className="w-10 h-10 rounded-full bg-gray-300 mr-3" />
+            <img
+              src={defaultUser}
+              className="w-10 h-10 rounded-full bg-gray-300 mr-3"
+            />
           )}
           <span>{userData?.nickname}</span>
         </div>
