@@ -101,7 +101,7 @@ const PairPostDetail = () => {
           <hr />
         </section>
         <section>
-          <div className="py-4 grid gap-4 grid-cols-2 grid-rows-3 text-sm">
+          <div className="py-4 grid gap-6 grid-cols-2 grid-rows-3 text-sm">
             <div className="flex">
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 프로그래밍 유형
@@ -114,7 +114,7 @@ const PairPostDetail = () => {
               </span>
               <p>{detailData.proceed}</p>
             </div>
-            <div className="flex">
+            <div className="flex -space-y-4">
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 언어 및 프레임워크
               </span>
@@ -138,7 +138,7 @@ const PairPostDetail = () => {
               </span>
               <p>{detailData.runningTime}</p>
             </div>
-            <div className="flex">
+            <div className="flex -space-y-4">
               <span className="inline-block pr-4 text-[#6A6A6A]">
                 개발 도구
               </span>
