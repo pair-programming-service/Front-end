@@ -5,10 +5,12 @@ import { MutableRefObject } from "react";
 const PostEditContent = ({
   title,
   setTitle,
+  content,
   editorRef,
 }: {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  content: string;
   editorRef: MutableRefObject<Editor | null>;
 }) => {
   return (
@@ -20,7 +22,7 @@ const PostEditContent = ({
         onChange={(e) => setTitle(e.target.value)}
       />
       <div className="text-2xl font-bold mb-2">내용을 입력해주세요</div>
-      <Editor initialValue={""} ref={editorRef} />
+      <Editor initialValue={content} ref={editorRef} />
     </div>
   );
 };
