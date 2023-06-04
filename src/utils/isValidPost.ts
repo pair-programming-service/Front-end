@@ -5,7 +5,10 @@ export const isValidPost = (post: PairPost) => {
     post.title.length === 0 ||
     post.language.length === 0 ||
     post.content.length === 0 ||
-    !post.ide
+    !post.category ||
+    !post.ide ||
+    !post.runningTime ||
+    !post.proceed
   )
     return false;
 
