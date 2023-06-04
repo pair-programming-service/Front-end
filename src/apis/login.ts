@@ -1,9 +1,6 @@
 import request from "./base";
 
-enum Token {
-  ACCESS_TOKEN = "access",
-  REFRESH_TOKEN = "refresh",
-}
+type Token = string;
 
 export const handleLogin = async (email: string, password: string) => {
   let returnValue;
@@ -13,16 +10,13 @@ export const handleLogin = async (email: string, password: string) => {
       password: password,
     })
     .then((response) => {
-      const token: Token.ACCESS_TOKEN = response.headers.authorization;
-      const refreshToken: Token.REFRESH_TOKEN = response.headers.refreshtoken;
+      const token = response.headers.authorization as Token;
+      const refreshToken = response.headers.refreshtoken as Token;
 
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);
-      console.log("token:", token);
-      console.log("refreshToken:", refreshToken);
 
-      // 로그인 성공/실패 여부 판단
-      returnValue = response.data.success;
+      returnValue = response.data.data;
       return returnValue;
     });
 };
