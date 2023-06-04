@@ -6,7 +6,8 @@ export const getPairPostList = (
   size: number,
   searchValue: string,
   filteredLanNames: string[],
-  category?: string
+  category?: string,
+  status?: boolean
 ) => {
   const languages =
     filteredLanNames.length > 0
