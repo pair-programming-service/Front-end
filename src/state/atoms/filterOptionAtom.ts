@@ -10,3 +10,8 @@ export const programTypeFilter = atom({
   key: "programTypeFilter",
   default: -1,
 });
+
+export const statusFilter = atom({
+  key: "statusFilter",
+  default: true,
+});

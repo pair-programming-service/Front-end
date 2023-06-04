@@ -9,14 +9,14 @@ export const getPairPostList = (
   category?: string,
   status?: boolean
 ) => {
-  const languages =
+  const languageQuery =
     filteredLanNames.length > 0
       ? filteredLanNames.map((el) => el + "=true").join("&")
       : "";
+  const categoryQuery = encodeURI(category ? category : "");
+  const statusQuery = status ? "true" : "false";
   return request({
-    url: `/board/all?page=${page}&size=${size}&search=${searchValue}&${languages}&category=${encodeURI(
-      category ? category : ""
-    )}`,
+    url: `/board/all?page=${page}&size=${size}&search=${searchValue}&${languageQuery}&category=${categoryQuery}&status=${statusQuery}`,
   });
 };
 
