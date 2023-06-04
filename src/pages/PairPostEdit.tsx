@@ -84,24 +84,25 @@ const PairPostEdit = () => {
       status: isClose ? false : true,
     };
 
-    if (isValidPost(post)) {
-      if (id === undefined) {
-        postPairPost(post)
-          .then((res) => {
-            if (res.status === 200)
-              navigate(`/pairpostdetail/${res.data.data.id}`);
-          })
-          .catch((err) => console.error(err));
-      } else {
-        editPairPost(post, Number(id))
-          .then((res) => {
-            if (res.status === 200)
-              navigate(`/pairpostdetail/${res.data.data.id}`);
-          })
-          .catch((err) => console.error(err));
-      }
-    } else {
+    if (!isValidPost(post)) {
       alert("정보를 모두 입력해주세요.");
+      return;
+    }
+
+    if (id === undefined) {
+      postPairPost(post)
+        .then((res) => {
+          if (res.status === 200)
+            navigate(`/pairpostdetail/${res.data.data.id}`);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      editPairPost(post, Number(id))
+        .then((res) => {
+          if (res.status === 200)
+            navigate(`/pairpostdetail/${res.data.data.id}`);
+        })
+        .catch((err) => console.error(err));
     }
   };
 
