@@ -40,3 +40,10 @@ export const editPairPost = (data: PairPost, id: number) => {
     data,
   });
 };
+
+export const deletePairPost = (id: number) => {
+  return request({
+    method: "DELETE",
+    url: `/board/${id}`,
+  });
+};
