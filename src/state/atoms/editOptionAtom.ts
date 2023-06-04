@@ -30,3 +30,8 @@ export const startDateSelect = atom({
   key: "startDateSelect",
   default: new Date().toISOString().slice(0, 10),
 });
+
+export const statusSelect = atom({
+  key: "statusSelect",
+  default: true,
+});

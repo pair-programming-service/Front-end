@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { RiCheckboxCircleFill, RiCheckboxCircleLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   languageFilter,
   programTypeFilter,
+  statusFilter,
 } from "state/atoms/filterOptionAtom";
 import { optionList } from "types/filter.type";
 import { languageList } from "types/language.type";
@@ -18,9 +19,9 @@ const OptionFilter = () => {
 
   const setLanFilteredArr = useSetRecoilState(languageFilter);
   const setProgramFilteredId = useSetRecoilState(programTypeFilter);
+  const [status, setStatus] = useRecoilState(statusFilter);
 
   const [openedOptionNum, setOpenedOptionNum] = useState(0);
-  const [isRecruiting, setIsRecruiting] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -28,10 +29,11 @@ const OptionFilter = () => {
   const handleReset = () => {
     setLanFilteredArr(new Array(languageList.length).fill(false));
     setProgramFilteredId(-1);
+    setStatus(true);
   };
 
   const handleIsRecruiting = () => {
-    setIsRecruiting(!isRecruiting);
+    setStatus(!status);
   };
 
   // 로그인하지 않은 유저가 글 작성하기 클릭시 login modal open
@@ -60,7 +62,7 @@ const OptionFilter = () => {
           <div className="text-base font-bold mr-1 whitespace-nowrap">
             모집 중
           </div>
-          {isRecruiting ? (
+          {status ? (
             <RiCheckboxCircleFill
               size={20}
               cursor={"pointer"}

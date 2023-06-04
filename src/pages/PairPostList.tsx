@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil";
 import {
   languageFilter,
   programTypeFilter,
+  statusFilter,
 } from "state/atoms/filterOptionAtom";
 import { languageList } from "types/language.type";
 import { PairPost } from "types/post.type";
@@ -25,6 +26,7 @@ const PairPostList = () => {
   const [totalPage, setTotalPage] = useState(1);
   const lanFilter = useRecoilValue(languageFilter);
   const programFilter = useRecoilValue(programTypeFilter);
+  const status = useRecoilValue(statusFilter);
 
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState("");
@@ -44,12 +46,13 @@ const PairPostList = () => {
       20,
       searchValue || "",
       filterdLanNames,
-      programmingList.find((prog) => prog.id === programFilter)?.name
+      programmingList.find((prog) => prog.id === programFilter)?.name,
+      status
     ).then((res) => {
       setPostList(res.data.data);
       setTotalPage(res.data.page);
     });
-  }, [searchValue, nowPage, ...lanFilter, programFilter]);
+  }, [searchValue, nowPage, ...lanFilter, programFilter, status]);
 
   const handleSearch = () => {
     navigate(`/pairpostlist?search=${searchInput}&page=1`);

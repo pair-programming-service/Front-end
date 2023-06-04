@@ -8,9 +8,6 @@ import { useParams } from "react-router-dom";
 import { ProfileInfo } from "types/profile.type";
 
 const Profile = () => {
-  // TODO: nickname이 본인과 같으면 MyPage로 navigate
-  //    - 상태 관리로 로그인된 회원의 nickname 정보 가지고 있어야 함
-
   const nickname = useParams().nickname;
   const [isExistUser, setIsExistUser] = useState<boolean | undefined>(
     undefined
@@ -25,7 +22,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (nickname)
-      getProfileInfo(nickname)
+      getProfileInfo(nickname.replaceAll("-", "%23"))
         .then((res) => {
           if (res.data.success) {
             setIsExistUser(true);
@@ -33,7 +30,7 @@ const Profile = () => {
               nickname: res.data.data.nickname,
               githubLink: res.data.data.githubLink,
               profileImage: res.data.data.profileImage,
-              postList: [], // TODO: 해당 회원이 쓴 글
+              postList: res.data.data.boardList,
             });
           }
         })
@@ -67,7 +64,7 @@ const Profile = () => {
         </div>
         {
           <div>
-            <div className="text-2xl font-bold mb-2">{`${nickname}님의 게시글`}</div>
+            <div className="text-2xl font-bold mb-2">{`${profileInfo.nickname}님의 게시글`}</div>
             <PostList postList={profileInfo.postList} />
           </div>
         }

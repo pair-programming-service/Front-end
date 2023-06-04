@@ -45,7 +45,7 @@ const PairPostDetail = () => {
   const handleProfileClick = () => {
     detailData?.nickname === userNickName
       ? navigate("/mypage")
-      : navigate(`/profile/${detailData?.nickname}`);
+      : navigate(`/profile/${detailData?.nickname.replaceAll("#", "-")}`);
   };
 
   return detailData ? (

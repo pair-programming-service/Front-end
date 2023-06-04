@@ -7,32 +7,35 @@ import Nickname from "components/mypage/Nickname";
 import ProfileImage from "components/mypage/ProfileImage";
 import PostList from "components/pairPostList/PostList";
 import { useEffect, useRef, useState } from "react";
-import { ProfileInfo } from "types/profile.type";
+import { useRecoilState } from "recoil";
+import { userState } from "state/atoms/userAtom";
+import { PairPost } from "types/post.type";
 
 const MyPage = () => {
   const nicknameRef = useRef<HTMLInputElement>(null);
   const githubRef = useRef<HTMLInputElement>(null);
 
-  const [myInfo, setMyInfo] = useState<ProfileInfo>({
-    nickname: "",
-    profileImage: null,
-    githubLink: "",
-    postList: [],
-  });
+  const [myInfo, setMyInfo] = useRecoilState(userState);
+
   const [isEditing, setIsEditing] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [isValidNickname, setIsValidNickname] = useState(true);
 
   const handleEdit = () => {
     if (isEditing) {
-      uploadMyPageInfo(
-        selectedImage,
-        nicknameRef.current?.value || "",
-        githubRef.current?.value || ""
-      )
+      const nickname = nicknameRef.current?.value || "";
+      const githubLink = githubRef.current?.value || "";
+      uploadMyPageInfo(selectedImage, nickname, githubLink)
         .then((res) => {
           if (res.data.success === true) {
-            handleMyInfo();
+            setMyInfo({
+              ...myInfo,
+              nickname: res.data.data.nickname,
+              githubLink: res.data.data.githubLink,
+              profileImage: res.data.data.profileImage,
+              createdAt: res.data.data.createdAt,
+              id: res.data.data.id,
+            });
             setIsEditing(!isEditing);
           } else {
             if (res.data.error.code === "DUPLICATED_NICKNAME") {
@@ -53,21 +56,16 @@ const MyPage = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleMyInfo = () => {
+  useEffect(() => {
     getMyPageInfo().then((res) => {
       if (res.data.data) {
-        setMyInfo({
-          nickname: res.data.data.nickname,
-          profileImage: res.data.data.profileImage,
-          githubLink: res.data.data.githubLink,
-          postList: [], // TODO: 나의 게시글 목록
-        });
+        if (myInfo)
+          setMyInfo({
+            ...myInfo,
+            boardList: res.data.data as PairPost[],
+          });
       }
     });
-  };
-
-  useEffect(() => {
-    handleMyInfo();
   }, []);
 
   return (
@@ -78,17 +76,17 @@ const MyPage = () => {
             {isEditing ? (
               <ImageUpload
                 setSelectedImage={setSelectedImage}
-                defaultImage={myInfo.profileImage}
+                defaultImage={myInfo?.profileImage || null}
               />
             ) : (
-              <ProfileImage image={myInfo.profileImage} />
+              <ProfileImage image={myInfo?.profileImage || null} />
             )}
           </div>
           <div className="flex flex-col">
             {isEditing ? (
               <div>
                 <input
-                  defaultValue={myInfo.nickname}
+                  defaultValue={myInfo?.nickname}
                   placeholder={"닉네임"}
                   className="font-bold text-2xl border p-2 rounded"
                   ref={nicknameRef}
@@ -99,14 +97,14 @@ const MyPage = () => {
                 />
               </div>
             ) : (
-              <Nickname nickname={myInfo.nickname} />
+              <Nickname nickname={myInfo?.nickname || ""} />
             )}
             {myInfo?.githubLink && !isEditing && (
               <GithubLink link={myInfo.githubLink} />
             )}
             {isEditing && (
               <input
-                defaultValue={myInfo.githubLink || ""}
+                defaultValue={myInfo?.githubLink || ""}
                 placeholder="Github Link"
                 className="border rounded p-1"
                 ref={githubRef}
@@ -138,7 +136,7 @@ const MyPage = () => {
       {isEditing || (
         <div>
           <div className="text-2xl font-bold mb-2">내가 쓴 글</div>
-          <PostList postList={myInfo.postList} />
+          <PostList postList={myInfo?.boardList} />
         </div>
       )}
     </div>

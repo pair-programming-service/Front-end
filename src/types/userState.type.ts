@@ -1,11 +1,7 @@
-export interface Board {
-  title: string;
-  content: string;
-  category: string;
-}
+import { PairPost } from "./post.type";
 
 export interface UserState {
-  boardList?: Board[] | null;
+  boardList?: PairPost[] | null;
   loginSuccess?: boolean;
   createdAt: string;
   email?: string;
