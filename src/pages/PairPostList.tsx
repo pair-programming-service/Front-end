@@ -18,6 +18,8 @@ import { languageList } from "types/language.type";
 import { PairPost } from "types/post.type";
 import { programmingList } from "types/programming.type";
 import { ButtonStyle } from "types/styles.type";
+import ChatIcon from "../assets/images/chat/chatIcon.svg";
+import Chat from "components/modal/Chat";
 
 const PairPostList = () => {
   const navigate = useNavigate();
@@ -62,6 +64,8 @@ const PairPostList = () => {
     navigate(`/pairpostlist?search=${searchInput}&page=${num}`);
   };
 
+  const [isChatOpen, setIsChatOpen] = useState(true);
+
   return (
     <div className="w-full px-4 py-20">
       <div className="text-2xl font-bold w-full mb-4">페어 모집 글 목록</div>
@@ -94,6 +98,14 @@ const PairPostList = () => {
           itemClassFirst="border-none"
           itemClassLast="border-none"
         />
+        <div
+          onClick={() => setIsChatOpen((prev) => !prev)}
+          className="fixed bottom-10 right-20 bg-blue-500 flex items-center justify-center w-16 h-16 rounded-full cursor-pointer"
+        >
+          <img src={ChatIcon} />
+        </div>
+        {/* 채팅 모달 */}
+        <Chat isOpen={isChatOpen} setIsModalOpen={setIsChatOpen} />
       </div>
     </div>
   );
