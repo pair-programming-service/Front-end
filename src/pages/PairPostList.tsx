@@ -19,7 +19,7 @@ import { PairPost } from "types/post.type";
 import { programmingList } from "types/programming.type";
 import { ButtonStyle } from "types/styles.type";
 import ChatIcon from "../assets/images/chat/chatIcon.svg";
-import Chat from "components/modal/ChatList";
+import ChatList from "components/modal/ChatList";
 
 const PairPostList = () => {
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ const PairPostList = () => {
           <img src={ChatIcon} />
         </div>
         {/* 채팅 모달 */}
-        <Chat isOpen={isChatOpen} setIsModalOpen={setIsChatOpen} />
+        <ChatList isOpen={isChatOpen} setIsModalOpen={setIsChatOpen} />
       </div>
     </div>
   );
