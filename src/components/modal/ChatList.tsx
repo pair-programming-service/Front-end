@@ -2,7 +2,6 @@ import React from "react";
 import iconX from "../../assets/images/chat/iconX.svg";
 import searchIcon from "../../assets/images/chat/search.svg";
 import member from "../../assets/images/register/profile.svg";
-import Header from "../chatComponent/Header";
 import { ModalProps } from "types/modalPropsType";
 
 // 임시 채팅 데이터
@@ -50,14 +49,24 @@ const Chat = ({ isOpen, setIsModalOpen }: ModalProps) => {
       {isOpen ? (
         <div className="fixed inset-0 flex items-center justify-end z-50 mr-20 mb-40">
           <div className="rounded-xl overflow-hidden shadow-xl w-full sm:w-1/3 lg:w-80 mt-20">
-            <Header onClick={() => setIsModalOpen(false)} svg={iconX} />
+            {/* 헤더 UI */}
+            <div className="flex bg-blue-600 justify-between items-center h-14">
+              <span className="font-semibold text-white text-base ml-6">
+                채팅
+              </span>
+              <img
+                src={iconX}
+                onClick={() => setIsModalOpen(false)}
+                className="mr-5 cursor-pointer"
+              />
+            </div>
 
             {/* 채팅 UI */}
             <div className="bg-chat-bg h-[500px] overflow-y-auto">
-              <div className="ml-4 mr-4">
+              <div className="ml-2 mr-2">
                 {/* 검색창 */}
                 <div className="flex justify-between items-center sticky">
-                  <input className="w-full mt-5 h-10 rounded-xl pl-4" />
+                  <input className="w-full mt-5 h-10 rounded-xl pl-4 focus:outline-none" />
                   <img
                     src={searchIcon}
                     className="cursor-pointer mt-5 absolute right-4"
