@@ -8,11 +8,7 @@ import useOnclickOutside from "hooks/useOnclickOutside";
 import { useSetRecoilState } from "recoil";
 import { userState } from "state/atoms/userAtom";
 import { UserState } from "types/userState.type";
-
-interface ModalProps {
-  isOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { ModalProps } from "types/modalPropsType";
 
 const Login = ({ isOpen, setIsModalOpen }: ModalProps) => {
   const navigate = useNavigate();

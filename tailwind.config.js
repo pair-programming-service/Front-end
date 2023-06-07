@@ -14,6 +14,7 @@ export const theme = {
       "cm-200": "#D6E6F2",
       "cm-300": "#B9D7EA",
       "cm-400": "#769FCD",
+      "chat-bg": "#EDF1FF",
     },
   },
 };
