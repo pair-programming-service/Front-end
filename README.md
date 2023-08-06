@@ -10,11 +10,11 @@
 
 ### 프론트엔드
 
-<img width="100%" height="750" src="../Front-end/src/assets/images/FE.png" />
+<img width="100%" src="/Front-end/src/assets/images/FE.png">
 
 ### 백엔드
 
-<img width="100%" height="750" src="../Front-end/src/assets/images/BE.png" />
+<img width="100%" src="/Front-end/src/assets/images/BE.png">
 
 <br />
 
